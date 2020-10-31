@@ -7,7 +7,7 @@ import movieFetchBaseURL from "../axios";
 
 const baseUrl = "https://image.tmdb.org/t/p/original/";
 
-function Row({ title, fetchUrl, isLargeRow }) {
+function MovieRow({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
 
   return (
     <div className="row">
-      <h2>{title}</h2>
+      <h2 data-testid="test">{title}</h2>
 
       <div className="row__posters">
         {movies.map((movie) => (
@@ -47,4 +47,4 @@ function Row({ title, fetchUrl, isLargeRow }) {
   );
 }
 
-export default Row;
+export default MovieRow;
