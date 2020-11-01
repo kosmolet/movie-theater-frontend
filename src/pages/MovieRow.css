@@ -14,10 +14,11 @@
   display: none;
 }
 
-.row__poster {
+ .row__poster {
   object-fit: contain;
   width: 100%;
   max-height: 100px;
+ 
   margin-right: 10px;
   transition: transform 450ms;
 }
@@ -27,9 +28,9 @@
 }
 
 .row__posterLarge {
-  max-height: 200px;
+  max-height: 300px;
 }
 
 .row__posterLarge:hover {
   transform: scale(1.09);
-}
+}  

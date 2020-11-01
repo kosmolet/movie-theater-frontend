@@ -7,11 +7,14 @@ function App() {
   return (
     <div className="App">
       <h1 className="App-header">This is Movie Theater!</h1>
-      <MovieRow title="Trending Now" fetchUrl={fetchMoviesRequests.Trending} />
+
       <MovieRow
         title="Movies in Theater"
-        fetchUrl={fetchMoviesRequests.MoviesInTheatres}
+        fetchUrl={fetchMoviesRequests.InTheaters}
       />
+      <MovieRow title="Coming Soon" fetchUrl={fetchMoviesRequests.Upcoming} />
+      <MovieRow title="Top Rated" fetchUrl={fetchMoviesRequests.TopRated} />
+      <MovieRow title="Family" fetchUrl={fetchMoviesRequests.Family} />
     </div>
   );
 }

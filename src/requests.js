@@ -11,19 +11,18 @@ const getCurrentDate = (days, separator = "-") => {
   }${separator}${date < 10 ? `0${date}` : `${date}`}`;
 };
 
-const FROM_DATE = getCurrentDate(-21);
-const TO_DATE = getCurrentDate(-7);
+const FROM_DATE = getCurrentDate(-14);
+const TO_DATE = getCurrentDate(7);
+
+const FROM_DATE_UPCOMING = getCurrentDate(8);
+const TO_DATE_UPCOMING = getCurrentDate(21);
 
 const fetchMoviesRequests = {
-  MoviesInTheatres: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&primary_release_date.gte=${FROM_DATE}&primary_release_date.lte=${TO_DATE}&language=en-US`,
-  Popular: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&sort_by=popularity.desc`,
-  Trending: `/trending/all/week?api_key=${REACT_APP_TMDB_API_KEY}&language=en-US`,
-  TopRated: `/movie/top_rated?api_key=${REACT_APP_TMDB_API_KEY}&language=en-US`,
-  ActionMovies: `/movie?api_key=${REACT_APP_TMDB_API_KEY}&with_genres=28`,
-  ComedyMovies: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&with_genres=35`,
-  HorrorMovies: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&with_genres=27`,
-  RomanceMovies: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&with_genres=10749`,
-  Documentaries: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&with_genres=99`,
+  InTheaters: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&primary_release_date.gte=${FROM_DATE}&primary_release_date.lte=${TO_DATE}`,
+  Popular: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&primary_release_date.gte=${FROM_DATE}&primary_release_date.lte=${TO_DATE}&sort_by=popularity.desc`,
+  Upcoming: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&primary_release_date.gte=${FROM_DATE_UPCOMING}&primary_release_date.lte=${TO_DATE_UPCOMING}&language=en-US&sort_by=popularity.desc`,
+  TopRated: `/movie/top_rated?api_key=${REACT_APP_TMDB_API_KEY}&with_genres=80&sort_by=popularity.desc`,
+  Family: `/discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&primary_release_date.gte=${FROM_DATE}&primary_release_date.lte=${TO_DATE}&with_genres=10751&sort_by=popularity.desc`,
 };
 
 export default fetchMoviesRequests;

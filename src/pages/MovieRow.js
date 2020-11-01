@@ -5,7 +5,7 @@ import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import movieFetchBaseURL from "../axios";
 
-const baseUrl = "https://image.tmdb.org/t/p/original/";
+const baseImageUrl = "https://image.tmdb.org/t/p/original/";
 
 function MovieRow({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
@@ -13,7 +13,10 @@ function MovieRow({ title, fetchUrl, isLargeRow }) {
   useEffect(() => {
     async function fetchData() {
       const request = await movieFetchBaseURL.get(fetchUrl);
-      setMovies(request.data.results);
+      const filteredMovies = request.data.results.filter(
+        (i) => i.backdrop_path !== null && i.poster_path !== null
+      );
+      setMovies(filteredMovies);
       return request;
     }
     fetchData();
@@ -36,7 +39,7 @@ function MovieRow({ title, fetchUrl, isLargeRow }) {
           <img
             key={movie.id}
             className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-            src={`${baseUrl}${
+            src={`${baseImageUrl}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
             alt={movie.name}
