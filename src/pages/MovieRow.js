@@ -34,16 +34,16 @@ function MovieRow({ title, fetchUrl, isLargeRow }) {
     <div className="row">
       <h2 data-testid="test">{title}</h2>
 
-      <div className="row__posters">
+      <div className="cards">
         {movies.map((movie) => (
-          <img
-            key={movie.id}
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-            src={`${baseImageUrl}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.name}
-          />
+          <figure className="card">
+            <img
+              key={movie.id}
+              src={`${baseImageUrl}${movie.poster_path}`}
+              alt={movie.name}
+            />
+            <figcaption>{movie.title}</figcaption>
+          </figure>
         ))}
       </div>
     </div>

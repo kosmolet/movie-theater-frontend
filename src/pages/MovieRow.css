@@ -1,36 +1,80 @@
-.row {
+ .row {
   color: white;
-  margin-left: 20px;
+  margin: 3vw 4vw;
 }
-
-.row__posters {
+  .cards {
+  object-fit: contain;
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  padding: 20px; 
+  width: 100%;
+  padding: 15px; 
+  /* flex-flow: row wrap;  */
 }
-
-.row__posters::-webkit-scrollbar {
+.cards::-webkit-scrollbar {
   display: none;
 }
-
- .row__poster {
-  object-fit: contain;
-  width: 100%;
-  max-height: 100px;
- 
-  margin-right: 10px;
-  transition: transform 450ms;
+.card:hover,
+.card:focus,
+.card:active{
+  box-shadow: 0 8px 16px 3px rgba(0,0,0,0.6);
+  transform: translateY(-3px) scale(1.05) rotateX(15deg);
 }
+.card{
+  width: 20%;
+  margin: 20px;
+  min-width: 350px;
+  height: 600px;
+  overflow: hidden;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.8);
+  transform-origin: center top;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+  transition: 0.3s;
 
-.row__poster:hover {
-  transform: scale(1.08);
 }
-
-.row__posterLarge {
-  max-height: 300px;
+img{
+  max-width: 100%;
+  min-height: 100%;
 }
-
-.row__posterLarge:hover {
-  transform: scale(1.09);
-}  
+.card figcaption{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  background: none;
+  color: #fff;
+  transform: translateY(100%);
+  transition: 0.3s;
+}
+.card:after{
+  content: '';
+  z-index: 10;
+  width: 200%;
+  height: 100%;
+  top: -90%;
+  left: -20px;
+  opacity: 0.1;
+  transform: rotate(45deg);
+  background: linear-gradient(to top, transparent, #fff 15%, rgba(255,255,255,0.5));
+  transition: 0.3s;
+}
+.card figcaption,
+.card:after{
+  position: absolute;
+}
+ .card:hover figcaption,
+ .card:focus figcaption,
+ .card:active figcaption {
+  transform: none;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.card:hover:after,
+.card:focus:after,
+.card:active:after {
+  transform: rotate(25deg);
+  top: -20%;
+  opacity: 0.10;
+}
