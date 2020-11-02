@@ -1,6 +1,6 @@
  .row {
   color: white;
-  margin: 3vw 4vw;
+  margin: 4vw 2vw 0 2vw;
 }
   .cards {
   object-fit: contain;
@@ -21,10 +21,11 @@
   transform: translateY(-3px) scale(1.05) rotateX(15deg);
 }
 .card{
-  width: 20%;
-  margin: 20px;
-  min-width: 350px;
-  height: 600px;
+  margin: 2vh 1vh;
+  width: 20vw;
+  min-width: 20vw;
+  height: 55vh;
+  min-height: 20vh;
   overflow: hidden;
   box-shadow: 0 5px 10px rgba(0,0,0,0.8);
   transform-origin: center top;
@@ -36,6 +37,8 @@
 img{
   max-width: 100%;
   min-height: 100%;
+  min-height: 20vh;
+  min-width: 20vw;
 }
 .card figcaption{
   bottom: 0;
@@ -76,5 +79,5 @@ img{
 .card:active:after {
   transform: rotate(25deg);
   top: -20%;
-  opacity: 0.10;
+  opacity: 0.15;
 }

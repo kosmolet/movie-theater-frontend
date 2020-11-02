@@ -7,7 +7,7 @@ import movieFetchBaseURL from "../axios";
 
 const baseImageUrl = "https://image.tmdb.org/t/p/original/";
 
-function MovieRow({ title, fetchUrl, isLargeRow }) {
+function MovieRow({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -21,6 +21,14 @@ function MovieRow({ title, fetchUrl, isLargeRow }) {
     }
     fetchData();
   }, [fetchUrl]);
+
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      setOffset(window.pageYOffset);
+    };
+  }, []);
 
   const opts = {
     height: "390",

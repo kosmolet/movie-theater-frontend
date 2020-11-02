@@ -2,12 +2,14 @@ import React from "react";
 import "./App.css";
 import fetchMoviesRequests from "./requests";
 import MovieRow from "./pages/MovieRow";
+import Banner from "./pages/Banner";
+import Navbar from "./pages/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="App-header">This is Movie Theater!</h1>
-
+      <Navbar />
+      <Banner />
       <MovieRow
         title="Movies in Theater"
         fetchUrl={fetchMoviesRequests.InTheaters}

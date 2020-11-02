@@ -1,0 +1,90 @@
+.banner {
+  color: white;
+  object-fit: contain;
+  height: 70vh;
+  padding-bottom: 5vh;
+}
+
+.banner_contents {
+  margin-left: 3vw;
+  padding-top: 5vh;
+  height: 10vh;
+  max-height: 15vh;
+}
+
+.banner_title {
+  font-size: 3rem;
+  font-weight: 800;
+  padding-bottom: 1.5rem;
+  -webkit-text-stroke: 0.5px rgba(5, 84, 94, 0.7);
+  min-width: 45vw;
+  max-height: 20vh;
+}
+
+.banner_description {
+  width: 45rem;
+  line-height: 1rem;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  font-size: 2vh;
+  max-width: 60vw;
+  height: 4vh;
+  max-height: 5vh;
+  -webkit-text-stroke: 0.5px rgba(5, 84, 94, 0.7);
+  object-fit: contain;
+}
+
+.banner_button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.3vw;
+  padding: 0.5rem 2rem;
+  margin: 1rem;
+  background-color: rgb(223, 116, 104);
+  padding-bottom: 0.5rem;
+}
+
+.banner_button:hover {
+  background-color: #20bf55;
+
+  transition: all 0.2s;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #0b486b 0%,
+    #f56217 51%,
+    #0b486b 100%
+  );
+}
+.btn-grad {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.banner_shadow {
+  height: 60vh;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(41, 42, 43, 0.61),
+    #282c34
+  );
+}
