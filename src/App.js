@@ -1,23 +1,26 @@
 import React from "react";
 import "./App.css";
-import fetchMoviesRequests from "./requests";
-import MovieRow from "./pages/MovieRow";
-import Banner from "./pages/Banner";
-import Navbar from "./pages/Navbar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import MovieDetails from "./pages/MovieDetails";
+import MovieTest from "./pages/MovieTest";
+import { MovieProvider } from "./pages/MovieContext";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Banner />
-      <MovieRow
-        title="Movies in Theater"
-        fetchUrl={fetchMoviesRequests.InTheaters}
-      />
-      <MovieRow title="Coming Soon" fetchUrl={fetchMoviesRequests.Upcoming} />
-      <MovieRow title="Top Rated" fetchUrl={fetchMoviesRequests.TopRated} />
-      <MovieRow title="Family" fetchUrl={fetchMoviesRequests.Family} />
-    </div>
+    <MovieProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/test" exact component={MovieTest} />
+            <Route path="/movie/:id" component={MovieDetails} />
+          </Switch>
+        </div>
+      </Router>
+    </MovieProvider>
   );
 }
 

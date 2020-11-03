@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./MovieRow.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
@@ -44,14 +46,19 @@ function MovieRow({ title, fetchUrl }) {
 
       <div className="cards">
         {movies.map((movie) => (
-          <figure className="card">
-            <img
-              key={movie.id}
-              src={`${baseImageUrl}${movie.poster_path}`}
-              alt={movie.name}
-            />
-            <figcaption>{movie.title}</figcaption>
-          </figure>
+          <>
+            <Link arr={movies} to={`/movie/${movie.id}`}>
+              <figure className="card">
+                {movie.name}
+                <img
+                  key={movie.id}
+                  src={`${baseImageUrl}${movie.poster_path}`}
+                  alt={movie.name}
+                />
+                <figcaption>{movie.title}</figcaption>
+              </figure>
+            </Link>{" "}
+          </>
         ))}
       </div>
     </div>
