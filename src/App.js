@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
-import MovieTest from "./pages/MovieTest";
-import { MovieProvider } from "./pages/MovieContext";
+import { MovieProvider } from "./store/MovieContext";
+import BuyTicket from "./pages/BuyTicket";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -15,8 +16,13 @@ function App() {
           <Navbar />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/test" exact component={MovieTest} />
-            <Route path="/movie/:id" component={MovieDetails} />
+            <Route path="/movie/:id" exact component={MovieDetails} />
+            <Route path="/movie/:id/booking/" exact component={BuyTicket} />
+            <Route
+              path="/movie/:id/booking/:id/payment"
+              exact
+              component={Payment}
+            />
           </Switch>
         </div>
       </Router>

@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import "./MovieDetails.css";
 
 const MovieDetails = ({ match }) => {
@@ -21,11 +22,20 @@ const MovieDetails = ({ match }) => {
 
   return (
     <div className="movie-details">
-      <h2>{movie.title}</h2>
       <h2>
         id:
         {`${match.params.id}`}
       </h2>
+      <h2>{movie.title}</h2>
+      <h6>{movie.overview}</h6>
+      {console.log(movie)}
+      {/* {movie.genres.map((genre) => (
+        <li>{genre.name}</li>
+      ))} */}
+      <Link to={`/movie/${movie.id}/booking`}>
+        <button type="button">TICKETS</button>
+      </Link>
+
       <div className="card">
         <figure className="card">
           <img

@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 import React, { useState, useEffect } from "react";
 import MovieRow from "../components/MovieRow";
 import fetchMoviesRequests from "../requests";
