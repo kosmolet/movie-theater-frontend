@@ -7,6 +7,8 @@ import MovieDetails from "./pages/MovieDetails";
 import { MovieProvider } from "./store/MovieContext";
 import BuyTicket from "./pages/BuyTicket";
 import Payment from "./pages/Payment";
+import Search from "./experiment/useSearch";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
       <Router>
         <div className="App">
           <Navbar />
+
           <Switch>
+            <Route path="/test" exact component={Search} />
             <Route path="/" exact component={Home} />
             <Route path="/movie/:id" exact component={MovieDetails} />
             <Route path="/movie/:id/booking/" exact component={BuyTicket} />
@@ -26,6 +30,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <Footer />
     </MovieProvider>
   );
 }

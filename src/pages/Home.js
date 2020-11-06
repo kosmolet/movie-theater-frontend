@@ -8,6 +8,7 @@ function Movies() {
   return (
     <div className="row">
       <Banner />
+
       <MovieRow
         title="Movies in Theater"
         fetchUrl={fetchMoviesRequests.InTheaters}

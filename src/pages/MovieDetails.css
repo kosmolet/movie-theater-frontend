@@ -1,5 +1,16 @@
 .movie-details {
   background-color: thistle;
-  height: 100vh;
+  height: 100%;
   text-align: center;
+}
+
+.movie-details img {
+  display: flex;
+  width: 40%;
+  margin: 0;
+}
+
+.youtube-trailer {
+  width: 70%;
+  margin: 0;
 }
