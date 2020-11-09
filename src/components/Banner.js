@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import movieFetchBaseURL from "../axios";
-import fetchMoviesRequests from "../requests";
+import { fetchMoviesRequests } from "../config";
 import "./Banner.css";
 
-function Banner() {
+const Banner = () => {
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const request = await movieFetchBaseURL.get(
         fetchMoviesRequests.InTheaters
       );
       const filteredMovies = request.data.results.filter(
-        (i) => i.backdrop_path !== null
+        (i) => i.backdrop_path
       );
       setMovie(
         filteredMovies[
           Math.floor(Math.floor(Math.random() * filteredMovies.length - 1))
         ]
       );
-    }
+    };
     fetchData();
   }, []);
 
@@ -58,6 +58,6 @@ function Banner() {
       <div className="banner_shadow"> </div>
     </header>
   );
-}
+};
 
 export default Banner;

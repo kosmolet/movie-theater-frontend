@@ -1,0 +1,7 @@
+.movie-row-found {
+  flex-flow: row wrap;
+  display: flex;
+}
+.header-active-search {
+  color: white;
+}

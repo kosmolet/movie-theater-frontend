@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-boolean-value */
 import React, { useState, useEffect } from "react";
 import "./MovieRow.css";
 import movieFetchBaseURL from "../axios";
@@ -8,15 +7,15 @@ const MovieRow = ({ title, fetchUrl }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const request = await movieFetchBaseURL.get(fetchUrl);
       const filteredMovies = request.data.results.filter(
-        (i) => i.backdrop_path !== null && i.poster_path !== null
+        (i) => i.backdrop_path && i.poster_path
       );
       setMovies(filteredMovies);
       return request;
-    }
-    fetchData();
+    };
+    fetchData(fetchUrl);
   }, [fetchUrl]);
 
   return (
@@ -24,8 +23,9 @@ const MovieRow = ({ title, fetchUrl }) => {
       <h2>{title}</h2>
 
       <div className="movie-row">
+        {console.log("RowMovie", title, movies)}
         {movies.map((movie) => (
-          <MovieCard movie={movie} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>

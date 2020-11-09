@@ -1,12 +1,6 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable no-console */
-/* eslint-disable prefer-template */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/jsx-closing-bracket-location */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./MovieDetails.css";
@@ -51,7 +45,7 @@ const MovieDetails = ({ match }) => {
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
         })
-        .catch((error) => console.log("no trailer:  " + error));
+        .catch((error) => console.log(`no trailer:  ${error}`));
     }
   };
 
@@ -75,7 +69,7 @@ const MovieDetails = ({ match }) => {
       </div>
 
       <div className="movie-description">
-        <span className="score">Movie Score: {movie.vote_average} </span>
+        <span className="score">Movie Score: {movie.vote_average}</span>
         <span className="year">Movie release_date: {movie.release_date} </span>
         <span className="duration">Movie duration: {movie.runtime}min </span>
 
@@ -85,7 +79,7 @@ const MovieDetails = ({ match }) => {
           <span>Genres: </span>
           {movie.genres !== undefined
             ? movie.genres.map((genre, index) => {
-                if (index < 6) return genre.name + " ";
+                if (index < 6) return `${genre.name} `;
                 return null;
               })
             : console.log(movie.genres, "movie.genres")}
