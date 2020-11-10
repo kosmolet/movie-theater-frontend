@@ -1,4 +1,4 @@
-name: Run build and tests
+name: Cinema frontend
 
 on:
   push:
