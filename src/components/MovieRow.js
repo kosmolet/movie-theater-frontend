@@ -20,7 +20,7 @@ const MovieRow = ({ title, fetchUrl }) => {
 
   return (
     <div className="movie-row-wrapper">
-      <h2>{title}</h2>
+      <h2 data-testid="title-movie-row">{title}</h2>
 
       <div className="movie-row">
         {console.log("RowMovie", title, movies)}

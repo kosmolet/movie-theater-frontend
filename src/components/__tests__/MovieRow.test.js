@@ -5,11 +5,11 @@ import MovieRow from "../MovieRow";
 describe("MoviewRow testing", () => {
   let getByTestId;
   beforeEach(() => {
-    ({ getByTestId } = render(<MovieRow />));
+    ({ getByTestId } = render(<MovieRow title="Family" />));
   });
 
   test("renders title", async () => {
-    const title = getByTestId("test");
-    expect(title.innerHTML).toBe("");
+    const title = getByTestId("title-movie-row");
+    expect(title.innerHTML).toBe("Family");
   });
 });
