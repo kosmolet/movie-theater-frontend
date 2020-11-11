@@ -55,7 +55,7 @@ function Movies() {
       )}
       <MovieRow
         title="Movies in Theater"
-        fetchUrl={fetchMoviesRequests.InTheaters}
+        fetchUrl={fetchMoviesRequests.FetchFromDB}
       />
       <MovieRow title="Coming Soon" fetchUrl={fetchMoviesRequests.Upcoming} />
       <MovieRow title="Top Rated" fetchUrl={fetchMoviesRequests.TopRated} />

@@ -1,37 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-// import movieFetchBaseURL from "../axios";
-// import { fetchMoviesRequests } from "../config";
 import { MovieContext } from "../store/MovieContext";
 import "./Banner.css";
 
 const Banner = () => {
   const [movie, setMovie] = useState([]);
-  const [moviesContext] = useContext(MovieContext);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const request = await movieFetchBaseURL.get(
-  //       fetchMoviesRequests.InTheaters
-  //     );
-  //     const filteredMovies = request.data.results.filter(
-  //       (i) => i.backdrop_path
-  //     );
-  //     setMovie(
-  //       filteredMovies[
-  //         Math.floor(Math.floor(Math.random() * filteredMovies.length - 1))
-  //       ]
-  //     );
-  //   };
-  //   fetchData();
-  // }, []);
+  const [, dbMovies] = useContext(MovieContext);
 
   useEffect(() => {
     setMovie(
-      moviesContext[
-        Math.floor(Math.floor(Math.random() * moviesContext.length - 1))
-      ]
+      dbMovies[Math.floor(Math.floor(Math.random() * dbMovies.length - 1))]
     );
-  }, [moviesContext]);
+  }, [dbMovies]);
 
   const truncateString = (str, num) => {
     return str?.length > num ? `${str.substr(0, num - 1)}...` : str;

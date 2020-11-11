@@ -7,11 +7,11 @@ const MovieCard = ({ movie }) => {
   return (
     <div className="movie-card-wrapper">
       {movie.poster_path ? (
-        <Link to={`/movie/${movie.id}`}>
+        <Link to={`/movie/${movie?.id || movie?.tmdb_id}`}>
           <figure className="movie-card">
             {movie.name}
             <img
-              key={movie.id}
+              key={movie?.id || movie?.tmdb_id}
               src={`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`}
               alt={`${movie.title} poster`}
             />
