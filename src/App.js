@@ -10,6 +10,7 @@ import Payment from "./pages/Payment";
 import Footer from "./components/Footer";
 import Seats from "./components/Seats";
 import NotFound from "./pages/NotFound";
+import Ticket from "./components/Ticket";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
           <Switch>
             <Route path="/seats" exact component={Seats} />
+            <Route path="/ticket" exact component={Ticket} />
             <Route path="/" exact component={Home} />
             <Route path="/movie/:id" exact component={MovieDetails} />
             <Route path="/movie/:id/booking/" exact component={BuyTicket} />

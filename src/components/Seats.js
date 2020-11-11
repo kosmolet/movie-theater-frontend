@@ -1,11 +1,11 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const StyledSeat = styled.div`
-  background-color: ${(props) => props.inputColor || "#3C3C3C"};
+  background-color: black;
   width: 100%;
   height: 100%;
+  pading: 100px;
   border-radius: 15%;
   transition: 0.3s ease transform;
   :hover {
@@ -13,18 +13,18 @@ const StyledSeat = styled.div`
     transform: scale(0.95);
   }
 `;
-
-const Seats = () => {
-  // const [isTacken, setTaken] = useState(false);
-
+const Seat = () => {
+  const onClick = () => {
+    console.log("onclick");
+  };
   return (
-    <div className="seats">
-      <h1>hej</h1>
+    <div>
+      <h1>sadasd</h1>
+      <StyledSeat onClick={onClick()} />
+      <StyledSeat inputColor="#f8b500" onClick={onClick()} />
       <StyledSeat inputColor="#cacaca" />
-      <StyledSeat inputColor="#cacaca" />
-      <StyledSeat inputColor="#cacaca" />
+      <h1>3434</h1>
     </div>
   );
 };
-
-export default Seats;
+export default Seat;

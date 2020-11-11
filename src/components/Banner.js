@@ -1,27 +1,37 @@
-import React, { useState, useEffect } from "react";
-import movieFetchBaseURL from "../axios";
-import { fetchMoviesRequests } from "../config";
+import React, { useState, useEffect, useContext } from "react";
+// import movieFetchBaseURL from "../axios";
+// import { fetchMoviesRequests } from "../config";
+import { MovieContext } from "../store/MovieContext";
 import "./Banner.css";
 
 const Banner = () => {
   const [movie, setMovie] = useState([]);
+  const [moviesContext] = useContext(MovieContext);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const request = await movieFetchBaseURL.get(
+  //       fetchMoviesRequests.InTheaters
+  //     );
+  //     const filteredMovies = request.data.results.filter(
+  //       (i) => i.backdrop_path
+  //     );
+  //     setMovie(
+  //       filteredMovies[
+  //         Math.floor(Math.floor(Math.random() * filteredMovies.length - 1))
+  //       ]
+  //     );
+  //   };
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const request = await movieFetchBaseURL.get(
-        fetchMoviesRequests.InTheaters
-      );
-      const filteredMovies = request.data.results.filter(
-        (i) => i.backdrop_path
-      );
-      setMovie(
-        filteredMovies[
-          Math.floor(Math.floor(Math.random() * filteredMovies.length - 1))
-        ]
-      );
-    };
-    fetchData();
-  }, []);
+    setMovie(
+      moviesContext[
+        Math.floor(Math.floor(Math.random() * moviesContext.length - 1))
+      ]
+    );
+  }, [moviesContext]);
 
   const truncateString = (str, num) => {
     return str?.length > num ? `${str.substr(0, num - 1)}...` : str;

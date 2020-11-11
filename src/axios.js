@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const movieFetchBaseURL = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+const fetchBaseURL = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
-export default movieFetchBaseURL;
+export default fetchBaseURL;

@@ -1,5 +1,6 @@
 const TMDB_API_URL = "https://api.themoviedb.org/3/";
 const { REACT_APP_TMDB_API_KEY } = process.env;
+const { REACT_APP_BASE_URL } = process.env;
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
 // Sizes: w300, w780, w1280, original
@@ -32,6 +33,7 @@ const fetchMoviesRequests = {
   TopRated: `${TMDB_API_URL}movie/top_rated?api_key=${REACT_APP_TMDB_API_KEY}&with_genres=80&sort_by=popularity.desc`,
   Family: `${TMDB_API_URL}discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&primary_release_date.gte=${FROM_DATE}&primary_release_date.lte=${TO_DATE}&with_genres=10751&sort_by=popularity.desc`,
   MovieSearch: `${TMDB_API_URL}search/movie?api_key=${REACT_APP_TMDB_API_KEY}&query=`,
+  FetchFromDB: `${REACT_APP_BASE_URL}movies`,
 };
 
 export {
