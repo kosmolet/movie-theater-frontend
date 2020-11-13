@@ -1,36 +1,35 @@
 import React, { useReducer } from "react";
 import AppContext from "./context";
 import reducer from "./reducer";
-import days from "../config/WeekDays";
-// import {
-//   SET_MOVIES,
-//   SET_CHOSEN_MOVIE,
-//   SET_DAY,
-//   SET_DATES,
-//   ADD_SEAT,
-//   DELETE_SEAT,
-//   SET_TICKET_TYPE,
-//   CLEAR_CHOSEN_SEATS,
-//   SET_USER,
-// } from "./actions";
+import initialState from "./state";
 
-const dayOfWeek = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
+import {
+  SET_MOVIES,
+  SET_CHOSEN_MOVIE,
+  SET_DAY,
+  SET_DATES,
+  ADD_SEAT,
+  DELETE_SEAT,
+  SET_TICKET_TYPE,
+  CLEAR_CHOSEN_SEATS,
+  SET_USER,
+} from "./actions";
 
-const initialState = {
-  chosenDay: { day: days[dayOfWeek], date: new Date() },
-  dates: [],
-  movies: [],
-  chosenMovie: {},
-  chosenSeats: [],
-  user: [],
-};
-
-const Store = ({ children }) => {
+const Store = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const addMovies = (moviesMongo) => {
+    dispatch({
+      type: SET_MOVIES,
+      payload: moviesMongo,
+    });
+  };
+
   return (
-    <AppContext.Provider value={[state, dispatch]}>
-      {children}
+    <AppContext.Provider
+      value={{ moviesMongo: state.moviesMongo, state, addMovies }}
+    >
+      {props.children}
     </AppContext.Provider>
   );
 };

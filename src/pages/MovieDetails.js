@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import "./MovieDetails.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import fetchBaseURL from "../axios";
 
 const { REACT_APP_TMDB_API_KEY } = process.env;
 
 const MovieDetails = ({ match }) => {
   const [movie, setMovie] = useState({});
   const [trailerUrl, setTrailerUrl] = useState("");
+  const [data, setDbData] = useState({});
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -25,6 +27,21 @@ const MovieDetails = ({ match }) => {
     fetchMovie();
     console.log("match", match);
   }, [match]);
+
+  useEffect(() => {
+    const fetchDbData = async () => {
+      try {
+        const request = await fetchBaseURL.get("/showtime");
+        const dataDb = request.data;
+        setDbData(dataDb);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e.message, "Data have not been fetched from DB");
+      }
+    };
+    fetchDbData();
+    console.log("DATA DB", data);
+  }, []);
 
   const opts = {
     height: "450",
@@ -85,6 +102,7 @@ const MovieDetails = ({ match }) => {
             : console.log(movie.genres, "movie.genres")}
         </p>
       </div>
+      {console.log("DATA DB", data)}
       <div className="tickets-button">
         <Link to={`/movie/${movie.id}/booking`}>
           <button type="button">TICKETS</button>

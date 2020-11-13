@@ -11,7 +11,6 @@ const MovieCard = ({ movie }) => {
           <figure className="movie-card">
             {movie.name}
             <img
-              key={movie?.id || movie?.tmdb_id}
               src={`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`}
               alt={`${movie.title} poster`}
             />
@@ -19,7 +18,7 @@ const MovieCard = ({ movie }) => {
           </figure>
         </Link>
       ) : (
-        <p>image coming soon</p>
+        <p>no poster</p>
       )}
     </div>
   );

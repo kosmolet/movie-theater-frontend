@@ -11,30 +11,33 @@ import Footer from "./components/Footer";
 import Seats from "./components/Seats";
 import NotFound from "./pages/NotFound";
 import Ticket from "./components/Ticket";
+import Store from "./context/store";
 
 function App() {
   return (
     <MovieProvider>
-      <Router>
-        <div className="App">
-          <Navbar />
+      <Store>
+        <Router>
+          <div className="App">
+            <Navbar />
 
-          <Switch>
-            <Route path="/seats" exact component={Seats} />
-            <Route path="/ticket" exact component={Ticket} />
-            <Route path="/" exact component={Home} />
-            <Route path="/movie/:id" exact component={MovieDetails} />
-            <Route path="/movie/:id/booking/" exact component={BuyTicket} />
-            <Route
-              path="/movie/:id/booking/:id/payment"
-              exact
-              component={Payment}
-            />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </Router>
-      <Footer />
+            <Switch>
+              <Route path="/seats" exact component={Seats} />
+              <Route path="/ticket" exact component={Ticket} />
+              <Route path="/" exact component={Home} />
+              <Route path="/movie/:id" exact component={MovieDetails} />
+              <Route path="/movie/:id/booking/" exact component={BuyTicket} />
+              <Route
+                path="/movie/:id/booking/:id/payment"
+                exact
+                component={Payment}
+              />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </Router>
+        <Footer />
+      </Store>
     </MovieProvider>
   );
 }

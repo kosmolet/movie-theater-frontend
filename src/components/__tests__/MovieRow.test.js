@@ -5,7 +5,7 @@ import MovieRow from "../MovieRow";
 describe("MoviewRow testing", () => {
   let getByTestId;
   beforeEach(() => {
-    ({ getByTestId } = render(<MovieRow title="Family" />));
+    ({ getByTestId } = render(<MovieRow title="Family" movies={[]} />));
   });
 
   test("renders title", async () => {

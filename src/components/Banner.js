@@ -1,16 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
-import { MovieContext } from "../store/MovieContext";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Banner.css";
 
-const Banner = () => {
+const Banner = ({ movies }) => {
   const [movie, setMovie] = useState([]);
-  const [, dbMovies] = useContext(MovieContext);
 
   useEffect(() => {
-    setMovie(
-      dbMovies[Math.floor(Math.floor(Math.random() * dbMovies.length - 1))]
-    );
-  }, [dbMovies]);
+    const randomMovie =
+      movies[Math.floor(Math.floor(Math.random() * movies.length - 1))];
+    if (randomMovie) {
+      setMovie(randomMovie);
+    } else {
+      setMovie(movies[0]);
+    }
+  }, [movies]);
 
   const truncateString = (str, num) => {
     return str?.length > num ? `${str.substr(0, num - 1)}...` : str;
@@ -35,9 +38,11 @@ const Banner = () => {
           <button type="button" className="banner_button">
             Play
           </button>
-          <button type="button" className="btn-grad">
-            Buy Ticket
-          </button>
+          <Link to={`/movie/${movie?.id || movie?.tmdb_id}`}>
+            <button type="button" className="btn-grad">
+              Buy Ticket
+            </button>
+          </Link>
         </div>
         <h1 className="banner_description">
           {truncateString(movie?.overview, 150)}

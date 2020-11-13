@@ -11,13 +11,14 @@ const SearchBar = ({ onSearch }) => {
   const handleInput = (e) => {
     const text = e.target.value;
     setSearchText(text);
+    onSearch(searchText);
   };
 
-  const handleEnterKeyPressed = (e) => {
-    if (e.key === "Enter") {
-      onSearch(searchText);
-    }
-  };
+  // const handleEnterKeyPressed = (e) => {
+  //   if (e.key === "Enter") {
+  //     onSearch(searchText);
+  //   }
+  // };
 
   return (
     <StyledSearchBar>
@@ -25,7 +26,7 @@ const SearchBar = ({ onSearch }) => {
         <input
           className="input"
           onChange={handleInput}
-          onKeyPress={handleEnterKeyPressed}
+          // onKeyPress={handleEnterKeyPressed}
           type="text"
           value={searchText}
           placeholder="Search your movies"

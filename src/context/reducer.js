@@ -33,7 +33,7 @@ const reducer = (state, action) => {
       return { ...state, chosenMovie: action.payload };
 
     case SET_MOVIES:
-      return { ...state, movies: action.payload };
+      return { ...state, moviesMongo: [...state.moviesMongo, action.payload] };
 
     case ADD_SEAT:
       return { ...state, chosenSeats: [...state.chosenSeats, action.payload] };
