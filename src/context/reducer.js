@@ -1,39 +1,37 @@
 import ticketPrices from "../config/TicketPrices";
 
 import {
+  SET_DAY,
   SET_MOVIES,
   SET_CHOSEN_MOVIE,
-  SET_DAY,
-  SET_DATES,
+  SET_AVAILABLE_SHOWTIME,
+  SET_CHOSEN_SHOWTIME,
   ADD_SEAT,
   DELETE_SEAT,
+  SET_CHOSEN_SEATS,
   SET_TICKET_TYPE,
   CLEAR_CHOSEN_SEATS,
   SET_USER,
+  SET_RESERVATION,
 } from "./actions";
 
 const reducer = (state, action) => {
   const getSeatIndex = () => {
-    const { row } = action.payload;
-    const { seat } = action.payload;
-
-    return state.chosenSeats.findIndex(
-      (item) => item.row === row && item.seat === seat
-    );
+    const seat = action.payload;
+    return state.chosenSeats.indexOf(seat);
   };
 
   switch (action.type) {
     case SET_DAY:
       return { ...state, chosenDay: action.payload };
-
-    case SET_DATES:
-      return { ...state, dates: action.payload };
-
+    case SET_MOVIES:
+      return { ...state, moviesMdb: action.payload };
     case SET_CHOSEN_MOVIE:
       return { ...state, chosenMovie: action.payload };
-
-    case SET_MOVIES:
-      return { ...state, moviesMongo: [...state.moviesMongo, action.payload] };
+    case SET_AVAILABLE_SHOWTIME:
+      return { ...state, availableShowtime: action.payload };
+    case SET_CHOSEN_SHOWTIME:
+      return { ...state, chosenShowtime: action.payload };
 
     case ADD_SEAT:
       return { ...state, chosenSeats: [...state.chosenSeats, action.payload] };
@@ -46,7 +44,8 @@ const reducer = (state, action) => {
           ...state.chosenSeats.slice(getSeatIndex() + 1),
         ],
       };
-
+    case SET_CHOSEN_SEATS:
+      return { ...state, chosenSeats: action.payload };
     case SET_TICKET_TYPE:
       // eslint-disable-next-line no-case-declarations
       const newSeat = {
@@ -68,6 +67,9 @@ const reducer = (state, action) => {
 
     case SET_USER:
       return { ...state, user: action.payload };
+
+    case SET_RESERVATION:
+      return { ...state, reservation: action.payload };
 
     default:
       return state;

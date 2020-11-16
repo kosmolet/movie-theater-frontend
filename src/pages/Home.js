@@ -9,7 +9,7 @@ import "./Home.css";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 const Movies = () => {
-  const [moviesFound, setMovies] = useState([]);
+  const [moviesFound, setFoundMovies] = useState([]);
   const [
     allMovies,
     allMoviesFromDb,
@@ -19,24 +19,16 @@ const Movies = () => {
     moviesPopular,
   ] = useFetchMovies();
   const [searchText, setText] = useState("");
-  const { moviesMongo, state } = useContext(AppContext);
-  // const [state, dispatch] = useContext(AppContext);
-  // const newMovie = {
-  //   id: Math.random(),
-  //   text: "movie added from home1",
-  // };
-  // useEffect(() => {
-  //   addMovies(newMovie);
-  // }, []);
+  const { state, setMoviesMdb } = useContext(AppContext);
 
   useEffect(() => {
     if (searchText.length > 1) {
       const filteredMovies = allMovies.filter((movie) =>
         movie.title.toLowerCase().includes(searchText.toLowerCase())
       );
-      setMovies(filteredMovies);
+      setFoundMovies(filteredMovies);
     } else {
-      setMovies([]);
+      setFoundMovies([]);
     }
   }, [allMovies, searchText]);
 
@@ -44,9 +36,13 @@ const Movies = () => {
     setText(text);
   };
 
+  useEffect(() => {
+    setMoviesMdb(allMoviesFromDb);
+  }, [allMoviesFromDb]);
+
   return (
     <div className="row">
-      {console.log(state, "HomeSTATE")}
+      {console.log(state, "STOREhomeAppContext")}
       <Banner movies={allMoviesFromDb} />
       <SearchBar onSearch={onSearch} />
       {moviesFound.length > 0 ? (

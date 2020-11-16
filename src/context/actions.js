@@ -1,9 +1,12 @@
+export const SET_DAY = "SET_DAY";
 export const SET_MOVIES = "SET_MOVIES";
 export const SET_CHOSEN_MOVIE = "SET_CHOSEN_MOVIE";
-export const SET_DAY = "SET_DAY";
-export const SET_DATES = "SET_DATES";
+export const SET_AVAILABLE_SHOWTIME = "SET_AVAILABLE_SHOWTIME";
+export const SET_CHOSEN_SHOWTIME = "SET_CHOSEN_SHOWTIME";
 export const ADD_SEAT = "ADD_SEAT";
 export const DELETE_SEAT = "DELETE_SEAT";
 export const SET_TICKET_TYPE = "SET_TICKET_TYPE";
 export const CLEAR_CHOSEN_SEATS = "CLEAR_CHOSEN_SEATS";
 export const SET_USER = "SET_USER";
+export const SET_RESERVATION = "SET_RESERVATION";
+export const SET_CHOSEN_SEATS = "SET_CHOSEN_SEATS";
