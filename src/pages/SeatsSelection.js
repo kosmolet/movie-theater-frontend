@@ -16,6 +16,7 @@ const SeatsSelection = () => {
     clearSelectedSeats,
     chosenSeats,
     setChosenSeats,
+    setChosenShowTime,
   } = useContext(AppContext);
   const [selectedSeats, changeSelectedSeats] = useState([]);
   const [seatsLimit, setLimit] = useState(false);
@@ -67,7 +68,10 @@ const SeatsSelection = () => {
       </div>
       <div className="screen"></div>
       <div className="cinema-hall-wrapper">{renderCinemaHall()}</div>
-      <button type="button">checkout</button>
+      <Link to="/payment">
+        <button type="button">checkout</button>
+      </Link>
+
       <h3>
         Selected Seats:
         <br />

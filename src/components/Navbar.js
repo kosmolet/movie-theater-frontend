@@ -20,7 +20,7 @@ function Navbar() {
   return (
     <div className={`nav ${show && "nav-black"}`}>
       <Link to="/">
-        <span className="logo"> Moviestad </span>
+        <span className="logo"> Moviestaden </span>
       </Link>
     </div>
   );

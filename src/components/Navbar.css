@@ -18,12 +18,12 @@
   left: 20px;
   width: 80px;
   object-fit: contain;
-  color: royalblue;
+  color: white;
   font-weight: 800;
-  font-size: 3vh;
-  /* text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #09203f, 0 0 40px #09203f,
-    0 0 70px #09203f, 0 0 80px#09203F, 0 0 100px#09203F, 0 0 150px #09203f; */
+  font-size: 4vh;
+  text-shadow: 0 0 10px black, 0 0 20px plum, 0 0 30px plum;
 }
+
 .header-options {
   position: fixed;
   right: 20vw;
@@ -33,45 +33,4 @@
 
 .header-options div {
   cursor: pointer;
-}
-
-.searchBox {
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.75);
-  border: solid 1px rgba(151, 146, 146, 0.85);
-  border-radius: 12px;
-  color: white;
-  width: 15vw;
-}
-
-.searchBox span {
-  color: white;
-}
-
-.searchInput {
-  color: #fff;
-  display: inline-block;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 12px;
-
-  opacity: 0;
-  outline: none;
-  transition: width 0.5s;
-  color: white;
-}
-
-.searchBox .searchInput {
-  width: 12vw;
-  padding: 1vh;
-  opacity: 1;
-  color: white;
-}
-
-.icon {
-  padding: 2px;
-  font-size: 2rem;
-  color: white;
 }

@@ -14,3 +14,23 @@
 .movie-row::-webkit-scrollbar {
   display: none;
 }
+
+.rec.rec-arrow {
+  border-radius: 30%;
+  color: whitesmoke;
+  background-color: black;
+}
+.rec.rec-arrow:hover {
+  border-radius: 50%;
+}
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+.rec.rec-arrow:focus {
+  background-color: goldenrod;
+}
+button.rec-dot {
+  /* background-color: rgb(24, 21, 21);
+  box-shadow: 0 0 1px 3px grey; */
+  box-shadow: 0 0 1px 1px grey;
+}

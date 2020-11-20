@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useContext } from "react";
@@ -29,7 +30,7 @@ const MovieDetails = ({ match }) => {
     setChosenShowTime,
   } = useContext(AppContext);
 
-  const fetchMovie = async () => {
+  const setMovieInfoAndShowtime = async () => {
     setChosenMovie({});
     if (match.params.id.length < 15) {
       const request = await fetch(
@@ -51,29 +52,18 @@ const MovieDetails = ({ match }) => {
     }
   };
 
-  useEffect(() => {
-    fetchMovie();
-  }, [match]);
+  const setShowTimeAndReservations = async (showtimeId) => {
+    console.log(showtimeId, "showtime");
+    const reservationsInShowTime = await fetchBaseURL.get(
+      `/movies/${match.params.id}/showtimes/${showtimeId}/reservations`
+    );
+    console.log(reservationsInShowTime);
+    setChosenShowTime(reservationsInShowTime.data[0]);
+  };
 
-  // const fetchMovieDbData = async () => {
-  //   setChosenMovie({});
-  //   try {
-  //     const request = await fetchBaseURL.get(
-  //       `/movies/${match.params.id}/showtimes`
-  //     );
-  //     const dataDb = request.data[0];
-  //     setDbData(dataDb);
-  //     if (dataDb) {
-  //       setChosenMovie(dataDb);
-  //     }
-  //   } catch (e) {
-  //     // eslint-disable-next-line no-console
-  //     console.log(e.message, "Data have not been fetched from DB");
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchMovieDbData();
-  // }, []);
+  useEffect(() => {
+    setMovieInfoAndShowtime();
+  }, [match]);
 
   const opts = {
     height: "450",
@@ -153,9 +143,10 @@ const MovieDetails = ({ match }) => {
               {showtime.startAt.slice(0, 10)} {showtime.startAt.slice(11, 16)}{" "}
               <Link to="/booking">
                 <button
+                  id={showtime._id}
                   className="tickets-button"
                   type="button"
-                  onClick={() => setChosenShowTime(showtime)}
+                  onClick={(e) => setShowTimeAndReservations(e.target.id)}
                   key={uuidv4()}
                 >
                   TICKETS
