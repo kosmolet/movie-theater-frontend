@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-
-import {
-  StyledSearchBar,
-  StyledSearchBarContent,
-} from "./styles/StyledSearchBar";
+import React, { useState, useEffect } from "react";
+import "./SearchBar.css";
 
 const SearchBar = ({ onSearch }) => {
   const [searchText, setSearchText] = useState("");
@@ -11,28 +7,23 @@ const SearchBar = ({ onSearch }) => {
   const handleInput = (e) => {
     const text = e.target.value;
     setSearchText(text);
-    onSearch(searchText);
   };
-
-  // const handleEnterKeyPressed = (e) => {
-  //   if (e.key === "Enter") {
-  //     onSearch(searchText);
-  //   }
-  // };
+  useEffect(() => {
+    onSearch(searchText);
+  }, [searchText]);
 
   return (
-    <StyledSearchBar>
-      <StyledSearchBarContent>
+    <div className="search-bar">
+      <div className="search-content">
         <input
-          className="input"
-          onChange={handleInput}
-          // onKeyPress={handleEnterKeyPressed}
+          className="search-input"
+          onChange={(e) => handleInput(e)}
           type="text"
           value={searchText}
-          placeholder="Search your movies"
+          placeholder="Search movies"
         />
-      </StyledSearchBarContent>
-    </StyledSearchBar>
+      </div>
+    </div>
   );
 };
 

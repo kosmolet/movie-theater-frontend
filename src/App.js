@@ -16,7 +16,6 @@ import Payment from "./pages/Payment";
 import CheckoutForm from "./pages/CheckoutForm";
 
 const { REACT_APP_STRIPE_SK_PUBLIC } = process.env;
-
 const stripePromise = loadStripe(REACT_APP_STRIPE_SK_PUBLIC);
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
       <Router>
         <div className="App">
           <Navbar />
-
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/movie/:id" exact component={MovieDetails} />

@@ -1,7 +1,7 @@
 const TMDB_API_URL = "https://api.themoviedb.org/3/";
+const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 const { REACT_APP_TMDB_API_KEY } = process.env;
 const { REACT_APP_BASE_URL } = process.env;
-const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
 // Sizes: w300, w780, w1280, original
 const BACKDROP_SIZE = "w1280";

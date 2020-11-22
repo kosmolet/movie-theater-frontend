@@ -35,11 +35,8 @@ const Banner = ({ movies }) => {
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <div className="banner_buttons">
-          <button type="button" className="banner_button">
-            Play
-          </button>
           <Link to={`/movie/${movie?.id || movie?.tmdb_id}`}>
-            <button type="button" className="btn-grad">
+            <button type="button" className="banner_button">
               Buy Ticket
             </button>
           </Link>
@@ -48,7 +45,6 @@ const Banner = ({ movies }) => {
           {truncateString(movie?.overview, 150)}
         </h1>
       </div>
-
       <div className="banner_shadow"> </div>
     </header>
   );

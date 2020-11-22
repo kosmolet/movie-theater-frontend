@@ -1,3 +1,7 @@
+.home-wrapper {
+  padding-bottom: 15vh;
+}
+
 .movie-row-found {
   flex-flow: row wrap;
   display: flex;

@@ -1,7 +1,6 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable prettier/prettier */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
@@ -21,7 +20,7 @@ const { REACT_APP_TMDB_API_KEY } = process.env;
 
 const MovieDetails = ({ match }) => {
   const [trailerUrl, setTrailerUrl] = useState("");
-  const [data, setDbData] = useState({});
+
   const {
     state,
     chosenMovie,
@@ -29,6 +28,7 @@ const MovieDetails = ({ match }) => {
     setAvailableShowTime,
     setChosenShowTime,
   } = useContext(AppContext);
+  const [movie1, setMovie] = useState(chosenMovie);
 
   const setMovieInfoAndShowtime = async () => {
     setChosenMovie({});
@@ -42,12 +42,12 @@ const MovieDetails = ({ match }) => {
       const requestMovieWithShowtimes = await fetchBaseURL.get(
         `/movies/${match.params.id}/showtimes`
       );
-      const movie = requestMovieWithShowtimes.data[0];
+      const movie = await requestMovieWithShowtimes.data[0];
       setChosenMovie(movie);
       const requestShowtimesWithReservations = await fetchBaseURL.get(
         `/movies/${match.params.id}/showtimes`
       );
-      const showtimes1 = requestShowtimesWithReservations.data;
+      const showtimes1 = await requestShowtimesWithReservations.data;
       setAvailableShowTime(showtimes1);
     }
   };
@@ -65,13 +65,19 @@ const MovieDetails = ({ match }) => {
     setMovieInfoAndShowtime();
   }, [match]);
 
+  useEffect(() => {
+    setMovie(chosenMovie);
+  }, []);
+
   const opts = {
-    height: "450",
-    width: "70%",
+    height: "550",
+    width: "100%",
     playerVars: {
       autoplay: 1,
       modestbranding: 1,
       rel: 0,
+      disablekb: 0,
+      playIcon: true,
     },
   };
 
@@ -89,52 +95,74 @@ const MovieDetails = ({ match }) => {
     }
   };
 
+  const timeConvert = (num) => {
+    const hours = Math.floor(num / 60);
+    const minutes = num % 60;
+    return `${hours}h${" "}${minutes}min${" "}`;
+  };
+
   return (
     <div className="movie-details">
-      {console.log("STORE movieDetails", state)}
-      <h3>{chosenMovie.title}</h3>
+      {console.log("STORE MovDetails", state)}
+      <header
+        className="banner"
+        style={{
+          backgroundSize: "cover",
+          backgroundImage: `url(
+                    "https://image.tmdb.org/t/p/original/${chosenMovie?.backdrop_path}"
+                )`,
+          backgroundPosition: "center center",
+        }}
+      />
+      <div className="poster-shadow"> </div>
+      <div className="poster-img-wrapper">
+        <img
+          className="poster-img"
+          src={`${IMAGE_BASE_URL}w185${chosenMovie?.poster_path}`}
+          alt={`${chosenMovie?.title} poster`}
+        />
+
+        <div className="title-genres-duration">
+          <h3>{chosenMovie.title}</h3>
+          <div className="genres">
+            {chosenMovie.genres ? (
+              chosenMovie.genres.map((genre, index) => {
+                if (index < 6) {
+                  return `${genre?.name || genre} `;
+                }
+                return null;
+              })
+            ) : (
+              <span>-</span>
+            )}
+          </div>
+
+          <span className="duration">
+            {timeConvert(chosenMovie.runtime)}
+            {" | "}
+          </span>
+          <span className="year">
+            From:{" "}
+            {movie1.release_date ? movie1.release_date.slice(0, 10) : "soon"}
+          </span>
+        </div>
+      </div>
+      <div className="playpause">
+        <input
+          type="checkbox"
+          onClick={() => handleShowTrailer(chosenMovie)}
+          value="None"
+          id="playpause"
+          name="check"
+        />
+        <label htmlFor="playpause"></label>
+      </div>
+
       <div className="youtube-trailer">
         {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
       </div>
-      <div className="card-wrapper">
-        <figure className="card">
-          <img
-            key={uuidv4()}
-            src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${chosenMovie.backdrop_path}`}
-            alt={chosenMovie.name}
-            onClick={() => handleShowTrailer(chosenMovie)}
-          />
-          <figcaption>{chosenMovie.title}</figcaption>
-        </figure>
-      </div>
 
-      <div className="movie-description">
-        <span className="score">
-          Movie Score:{" "}
-          {chosenMovie.vote_average ? chosenMovie.vote_average : `7.7 `}
-        </span>
-        <span className="year">
-          Movie release_date: {chosenMovie.release_date}{" "}
-        </span>
-        <span className="duration">
-          Movie duration: {chosenMovie.runtime}min{" "}
-        </span>
-
-        <div className="overview">{chosenMovie.overview}</div>
-
-        <p className="genres">
-          <span>Genres: </span>
-          {chosenMovie.genres !== undefined ? (
-            chosenMovie.genres.map((genre, index) => {
-              if (index < 6) return `${genre.name || genre[index]} `;
-              return null;
-            })
-          ) : (
-            <span>-</span>
-          )}
-        </p>
-      </div>
-
+      <div className="overview">{chosenMovie.overview}</div>
       <div className="showtime">
         <span> Showtimes: </span>
         {chosenMovie.showtimes !== undefined ? (

@@ -9,7 +9,7 @@ describe("MoviewRow testing", () => {
   });
 
   test("renders title", async () => {
-    const title = getByTestId("title-movie-row");
+    const title = getByTestId("movie-row-title");
     expect(title.innerHTML).toBe("Family");
   });
 });

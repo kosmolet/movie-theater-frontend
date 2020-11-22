@@ -5,8 +5,8 @@ import Banner from "../components/Banner";
 import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
 import AppContext from "../context/context";
-import "./Home.css";
 import useFetchMovies from "../hooks/useFetchMovies";
+import "./Home.css";
 
 const Movies = () => {
   const [moviesFound, setFoundMovies] = useState([]);
@@ -16,7 +16,6 @@ const Movies = () => {
     moviesTopRated,
     moviesFamily,
     moviesUpcoming,
-    moviesPopular,
   ] = useFetchMovies();
   const [searchText, setText] = useState("");
   const { state, setMoviesMdb } = useContext(AppContext);
@@ -41,14 +40,14 @@ const Movies = () => {
   }, [allMoviesFromDb]);
 
   return (
-    <div className="row">
-      {console.log(state, "STOREhomeAppContext")}
+    <div className="home-wrapper">
+      {console.log(state, "HOME store")}
       <Banner movies={allMoviesFromDb} />
       <SearchBar onSearch={onSearch} />
       {moviesFound.length > 0 ? (
         <div className="movie-row-wrapper">
           <h2>Movies found:</h2>
-          <div className="movie-row-found" key={uuidv4()}>
+          <div className="movie-row-found">
             {moviesFound.map((movie) => (
               <MovieCard key={uuidv4()} movie={movie} />
             ))}
@@ -59,8 +58,7 @@ const Movies = () => {
       )}
       <MovieRow key={uuidv4()} title="Buy Ticket" movies={allMoviesFromDb} />
       <MovieRow key={uuidv4()} title="Coming Soon" movies={moviesUpcoming} />
-      <MovieRow key={uuidv4()} title="Popular now" movies={moviesPopular} />
-      <MovieRow key={uuidv4()} title="Top Rated" movies={moviesTopRated} />
+      <MovieRow key={uuidv4()} title="Retrospective" movies={moviesTopRated} />
       <MovieRow key={uuidv4()} title="Family" movies={moviesFamily} />
     </div>
   );
