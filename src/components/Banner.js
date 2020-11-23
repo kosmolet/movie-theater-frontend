@@ -35,7 +35,7 @@ const Banner = ({ movies }) => {
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <div className="banner_buttons">
-          <Link to={`/movie/${movie?.id || movie?.tmdb_id}`}>
+          <Link to={`/movie/${movie?._id || movie?.id}`}>
             <button type="button" className="banner_button">
               Buy Ticket
             </button>

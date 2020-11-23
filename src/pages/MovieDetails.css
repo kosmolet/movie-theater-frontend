@@ -11,9 +11,7 @@
 .youtube-trailer {
   position: absolute;
   top: 0;
-  height: 15vh;
   width: 100%;
-  margin: 0;
 }
 
 .poster-img-wrapper {
@@ -22,11 +20,7 @@
   left: 15vw;
   width: 100%;
 }
-@media screen and (max-width: 600px) {
-  .poster-img-wrapper {
-    left: 1vw;
-  }
-}
+
 .poster-shadow {
   position: sticky;
   margin-top: -48.5vh;
@@ -40,9 +34,6 @@
   );
 }
 .poster-img {
-  /* position: absolute;
-  top: 1vh;
-  left: 1vw; */
   border-radius: 5px;
   box-shadow: 0px 0px 21px 4px black;
 }
@@ -57,13 +48,7 @@
   -webkit-text-stroke: 0.5px rgba(6, 25, 27, 0.7);
   text-shadow: black;
 }
-@media screen and (max-width: 600px) {
-  .title-genres-duration {
-    top: -29vh;
-    left: 9vw;
-    text-shadow: rgb(20, 18, 7) 1px 0 10px;
-  }
-}
+
 .genres {
   color: rgb(237, 241, 243);
   font-size: 15px;
@@ -112,15 +97,93 @@ input:focus + label {
 .overview {
   padding: 8vh 20vw;
   width: 40%;
+  font-family: "Texturina", serif;
 }
+.showtimes {
+  padding: 5vh 20vw;
+  width: 40%;
+}
+.showtime-title {
+  font-size: 20px;
+  font-weight: 800;
+  -webkit-text-stroke: 0.5px rgba(2, 128, 144, 0.8);
+}
+.showtime {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  border: solid 1px #028090;
+  border-bottom-style: solid;
+  border-style: none none solid none;
+  font-size: 15px;
+  font-weight: 800;
+}
+.showtime-time {
+  font-weight: 800;
+  font-size: 18px;
+  color: white;
+  -webkit-text-stroke: 0.5px rgba(18, 23, 24, 0.8);
+}
+.tickets-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 1rem 1rem;
+  justify-content: space-between;
+  background-image: linear-gradient(75deg, #d387ab 0%, #b279a7 74%);
+}
+.tickets-button:hover {
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  transition: all 0.2s;
+  color: white;
+}
+
+.dropdown-selector {
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  width: 40vw;
+  margin-left: 20vw;
+  border-radius: 7px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.dropdown-selection {
+  background-color: black;
+  color: white;
+  padding: 15px;
+  height: 20px;
+}
+
 @media screen and (max-width: 600px) {
   .overview {
-    padding: 20vh 0;
-    width: 50%;
+    padding: 20vh 2vw;
+    width: 60%;
   }
+
   .playpause {
     position: absolute;
     top: 105vh;
-    left: 60vw;
+    left: 65vw;
+  }
+  .poster-img-wrapper {
+    left: 1vw;
+  }
+  .title-genres-duration {
+    top: -29vh;
+    left: 9vw;
+    text-shadow: rgb(20, 18, 7) 1px 0 10px;
+  }
+  .showtimes {
+    padding: 5vh 2vw;
+    width: 90%;
   }
 }

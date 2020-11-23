@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -15,20 +17,48 @@ import {
   BACKDROP_SIZE,
   POSTER_SIZE,
 } from "../config";
+import days from "../config/WeekDays";
 
 const { REACT_APP_TMDB_API_KEY } = process.env;
 
 const MovieDetails = ({ match }) => {
   const [trailerUrl, setTrailerUrl] = useState("");
+  const [dropdown, setDropdown] = useState("All");
+  const [itemsDropdown, setDropdownItems] = useState([]);
 
   const {
     state,
+    availableShowtime,
     chosenMovie,
     setChosenMovie,
     setAvailableShowTime,
     setChosenShowTime,
   } = useContext(AppContext);
-  const [movie1, setMovie] = useState(chosenMovie);
+
+  const dayOfWeek = (dateStr) => {
+    const date = new Date(dateStr);
+    const dayIndex = date.getDay() === 0 ? 6 : date.getDay() - 1;
+    const day = days[dayIndex];
+    return day;
+  };
+
+  const beautifyDate = (date) => {
+    return `${date.slice(8, 10)}/${date.slice(5, 7)} - ${dayOfWeek(date)}`;
+  };
+  const setDropDownValues = (showtimesArr) => {
+    const datesArr = showtimesArr.map((showtime) =>
+      showtime.startAt.slice(0, 10)
+    );
+    const uniqueDates = datesArr.filter(
+      (value, index) => datesArr.indexOf(value) === index
+    );
+    const dropItems = uniqueDates.map((date) => ({
+      label: `${date} ${dayOfWeek(date)}`,
+      value: date,
+    }));
+    console.log(dayOfWeek(uniqueDates[0]));
+    setDropdownItems(dropItems);
+  };
 
   const setMovieInfoAndShowtime = async () => {
     setChosenMovie({});
@@ -47,8 +77,18 @@ const MovieDetails = ({ match }) => {
       const requestShowtimesWithReservations = await fetchBaseURL.get(
         `/movies/${match.params.id}/showtimes`
       );
-      const showtimes1 = await requestShowtimesWithReservations.data;
-      setAvailableShowTime(showtimes1);
+      const showtimesArr = await requestShowtimesWithReservations.data[0]
+        .showtimes;
+      const showtimesInFuture = showtimesArr.filter(
+        (showtimesArrItem) => new Date(showtimesArrItem.startAt) > new Date()
+      );
+      showtimesInFuture.sort((a, b) => {
+        return new Date(a.startAt) - new Date(b.startAt);
+      });
+      console.log(showtimesInFuture);
+      setAvailableShowTime(showtimesInFuture);
+
+      setDropDownValues(showtimesInFuture);
     }
   };
 
@@ -65,12 +105,8 @@ const MovieDetails = ({ match }) => {
     setMovieInfoAndShowtime();
   }, [match]);
 
-  useEffect(() => {
-    setMovie(chosenMovie);
-  }, []);
-
   const opts = {
-    height: "550",
+    height: "550px",
     width: "100%",
     playerVars: {
       autoplay: 1,
@@ -143,7 +179,9 @@ const MovieDetails = ({ match }) => {
           </span>
           <span className="year">
             From:{" "}
-            {movie1.release_date ? movie1.release_date.slice(0, 10) : "soon"}
+            {chosenMovie.release_date
+              ? chosenMovie.release_date.slice(0, 10)
+              : "soon"}
           </span>
         </div>
       </div>
@@ -163,12 +201,28 @@ const MovieDetails = ({ match }) => {
       </div>
 
       <div className="overview">{chosenMovie.overview}</div>
-      <div className="showtime">
-        <span> Showtimes: </span>
-        {chosenMovie.showtimes !== undefined ? (
-          chosenMovie.showtimes.map((showtime) => (
-            <div key={uuidv4()}>
-              {showtime.startAt.slice(0, 10)} {showtime.startAt.slice(11, 16)}{" "}
+      <select
+        className="dropdown-selector"
+        onChange={(e) => {
+          setDropdown(e.target.value);
+        }}
+      >
+        {itemsDropdown.map(({ label, value }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select>
+      {console.log(dropdown, "in drop")}
+      <div className="showtimes">
+        <span className="showtime-title"> Showtimes: </span>
+        {availableShowtime ? (
+          availableShowtime.map((showtime) => (
+            <div key={uuidv4()} className="showtime">
+              <span className="showtime-time">
+                {showtime.startAt.slice(11, 16)}
+              </span>
+              {beautifyDate(showtime.startAt)}
               <Link to="/booking">
                 <button
                   id={showtime._id}

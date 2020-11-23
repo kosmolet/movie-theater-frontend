@@ -1,7 +1,6 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
 import "./MovieRow.css";
-import { v4 as uuidv4 } from "uuid";
 import MovieCard from "./MovieCard";
 
 const breakPoints = [
@@ -18,7 +17,7 @@ const MovieRow = ({ title, movies }) => {
       <div className="movie-row">
         <Carousel breakPoints={breakPoints}>
           {movies.map((movie) => (
-            <MovieCard key={uuidv4()} movie={movie} />
+            <MovieCard key={movie?.id || movie?._id} movie={movie} />
           ))}
         </Carousel>
       </div>
