@@ -1,8 +1,4 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
@@ -11,23 +7,20 @@ import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import fetchBaseURL from "../axios";
 import AppContext from "../context/context";
-import {
-  TMDB_API_URL,
-  IMAGE_BASE_URL,
-  BACKDROP_SIZE,
-  POSTER_SIZE,
-} from "../config";
+import { TMDB_API_URL, IMAGE_BASE_URL } from "../config";
 import days from "../config/WeekDays";
 
 const { REACT_APP_TMDB_API_KEY } = process.env;
 
 const MovieDetails = ({ match }) => {
   const [trailerUrl, setTrailerUrl] = useState("");
-  const [dropdown, setDropdown] = useState("All");
   const [itemsDropdown, setDropdownItems] = useState([]);
+  const [dropdownValue, setDropdownValue] = useState("All");
+  const [ddResShowtimes, setddResShowtimes] = useState([]);
 
   const {
     state,
+    chosenDay,
     availableShowtime,
     chosenMovie,
     setChosenMovie,
@@ -42,66 +35,81 @@ const MovieDetails = ({ match }) => {
     return day;
   };
 
+  const timeConvert = (num) => {
+    const hours = Math.floor(num / 60);
+    const minutes = num % 60;
+    return `${hours}h${" "}${minutes}min${" "}`;
+  };
+
   const beautifyDate = (date) => {
     return `${date.slice(8, 10)}/${date.slice(5, 7)} - ${dayOfWeek(date)}`;
   };
   const setDropDownValues = (showtimesArr) => {
-    const datesArr = showtimesArr.map((showtime) =>
-      showtime.startAt.slice(0, 10)
-    );
-    const uniqueDates = datesArr.filter(
-      (value, index) => datesArr.indexOf(value) === index
-    );
-    const dropItems = uniqueDates.map((date) => ({
-      label: `${date} ${dayOfWeek(date)}`,
-      value: date,
-    }));
-    console.log(dayOfWeek(uniqueDates[0]));
-    setDropdownItems(dropItems);
-  };
-
-  const setMovieInfoAndShowtime = async () => {
-    setChosenMovie({});
-    if (match.params.id.length < 15) {
-      const request = await fetch(
-        `${TMDB_API_URL}movie/${match.params.id}?api_key=${REACT_APP_TMDB_API_KEY}`
+    if (showtimesArr.length > 0) {
+      const datesArr = showtimesArr.map((showtime) =>
+        showtime.startAt.slice(0, 10)
       );
-      const movie = await request.json();
-      setChosenMovie(movie);
-    } else {
-      const requestMovieWithShowtimes = await fetchBaseURL.get(
-        `/movies/${match.params.id}/showtimes`
+      const uniqueDates = datesArr.filter(
+        (value, index) => datesArr.indexOf(value) === index
       );
-      const movie = await requestMovieWithShowtimes.data[0];
-      setChosenMovie(movie);
-      const requestShowtimesWithReservations = await fetchBaseURL.get(
-        `/movies/${match.params.id}/showtimes`
-      );
-      const showtimesArr = await requestShowtimesWithReservations.data[0]
-        .showtimes;
-      const showtimesInFuture = showtimesArr.filter(
-        (showtimesArrItem) => new Date(showtimesArrItem.startAt) > new Date()
-      );
-      showtimesInFuture.sort((a, b) => {
-        return new Date(a.startAt) - new Date(b.startAt);
-      });
-      console.log(showtimesInFuture);
-      setAvailableShowTime(showtimesInFuture);
-
-      setDropDownValues(showtimesInFuture);
+      const dropItems = uniqueDates.map((date) => ({
+        label: `${beautifyDate(date)}`,
+        value: date,
+      }));
+      setDropdownItems(dropItems);
+      if (dropItems) {
+        setDropdownValue(dropItems[0].value);
+      }
     }
   };
 
+  const refreshShowtimes = () => {
+    return availableShowtime.filter((item) => {
+      return item.startAt.slice(0, 10) === dropdownValue;
+    });
+  };
+  useEffect(() => {
+    setddResShowtimes(refreshShowtimes());
+    console.log("ResShowtimes", dropdownValue);
+  }, [dropdownValue]);
+
   const setShowTimeAndReservations = async (showtimeId) => {
-    console.log(showtimeId, "showtime");
     const reservationsInShowTime = await fetchBaseURL.get(
       `/movies/${match.params.id}/showtimes/${showtimeId}/reservations`
     );
-    console.log(reservationsInShowTime);
-    setChosenShowTime(reservationsInShowTime.data[0]);
+    await setChosenShowTime(reservationsInShowTime.data[0]);
   };
 
   useEffect(() => {
+    const setMovieInfoAndShowtime = async () => {
+      setChosenMovie({});
+      if (match.params.id.length < 15) {
+        const request = await fetch(
+          `${TMDB_API_URL}movie/${match.params.id}?api_key=${REACT_APP_TMDB_API_KEY}`
+        );
+        const movie = await request.json();
+        setChosenMovie(movie);
+      } else {
+        const requestMovieWithShowtimes = await fetchBaseURL.get(
+          `/movies/${match.params.id}/showtimes`
+        );
+        const movie = await requestMovieWithShowtimes.data[0];
+        setChosenMovie(movie);
+        const requestShowtimesWithReservations = await fetchBaseURL.get(
+          `/movies/${match.params.id}/showtimes`
+        );
+        const showtimesArr = await requestShowtimesWithReservations.data[0]
+          .showtimes;
+        const showtimesInFuture = showtimesArr.filter(
+          (showtimesArrItem) => new Date(showtimesArrItem.startAt) > new Date()
+        );
+        showtimesInFuture.sort((a, b) => {
+          return new Date(a.startAt) - new Date(b.startAt);
+        });
+        setAvailableShowTime(showtimesInFuture);
+        setDropDownValues(showtimesInFuture);
+      }
+    };
     setMovieInfoAndShowtime();
   }, [match]);
 
@@ -129,12 +137,6 @@ const MovieDetails = ({ match }) => {
         // eslint-disable-next-line no-console
         .catch((error) => console.log(`no trailer:  ${error}`));
     }
-  };
-
-  const timeConvert = (num) => {
-    const hours = Math.floor(num / 60);
-    const minutes = num % 60;
-    return `${hours}h${" "}${minutes}min${" "}`;
   };
 
   return (
@@ -178,7 +180,7 @@ const MovieDetails = ({ match }) => {
             {" | "}
           </span>
           <span className="year">
-            From:{" "}
+            From:
             {chosenMovie.release_date
               ? chosenMovie.release_date.slice(0, 10)
               : "soon"}
@@ -193,7 +195,7 @@ const MovieDetails = ({ match }) => {
           id="playpause"
           name="check"
         />
-        <label htmlFor="playpause"></label>
+        <label className="label-movie-details" htmlFor="playpause" />
       </div>
 
       <div className="youtube-trailer">
@@ -204,20 +206,19 @@ const MovieDetails = ({ match }) => {
       <select
         className="dropdown-selector"
         onChange={(e) => {
-          setDropdown(e.target.value);
+          setDropdownValue(e.target.value);
         }}
       >
         {itemsDropdown.map(({ label, value }) => (
-          <option key={value} value={value}>
+          <option className="dropdown-selection" key={value} value={value}>
             {label}
           </option>
         ))}
       </select>
-      {console.log(dropdown, "in drop")}
       <div className="showtimes">
         <span className="showtime-title"> Showtimes: </span>
-        {availableShowtime ? (
-          availableShowtime.map((showtime) => (
+        {ddResShowtimes.length > 0 ? (
+          ddResShowtimes.map((showtime) => (
             <div key={uuidv4()} className="showtime">
               <span className="showtime-time">
                 {showtime.startAt.slice(11, 16)}
@@ -237,7 +238,24 @@ const MovieDetails = ({ match }) => {
             </div>
           ))
         ) : (
-          <span>Showtimes are not available for this movie</span>
+          <div>
+            <div key={uuidv4()} className="showtime">
+              <span className="showtime-time">
+                Showtimes are not available for this movie
+              </span>
+              <div className="gif">
+                <iframe
+                  title="gif"
+                  src="https://giphy.com/embed/J2aYPy0Fd8oPNITB6u"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  className="giphy-embed"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

@@ -1,14 +1,81 @@
+.checkout-wrapper {
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex;
+  align-items: flex;
+}
 .result-message {
   line-height: 22px;
-  font-size: 16px;
+  font-size: 1.3rem;
+  color: white;
+  overflow: hidden;
 }
 
 .result-message a {
-  color: rgb(227, 230, 245);
   font-weight: 600;
   text-decoration: none;
+  color: white;
 }
 
 .hidden {
   display: none;
+}
+
+.pay-form {
+  width: 42.5vw;
+  margin-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex;
+}
+.pay-labels {
+  color: #b91372;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex;
+  margin-top: 2vh;
+  font-size: 1.2rem;
+}
+.pay-labels-email {
+  color: #b91372;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex;
+  margin-top: 2vh;
+  font-size: 1.2rem;
+}
+
+.pay-inputs {
+  height: 4.5vh;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex;
+  border: 1px solid transparent;
+  box-shadow: 0 10px 25px rgba(2, 128, 144, 0.5);
+  background-color: rgb(5, 10, 10);
+  color: #9595bb;
+}
+
+.payment-button {
+  margin-top: 3vh;
+  width: 42.5vw;
+  font-size: 1.3rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 1rem 1rem;
+  justify-content: space-between;
+  background-image: linear-gradient(75deg, #d387ab 0%, #b279a7 74%);
+}
+.payment-button:hover {
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  transition: all 0.2s;
+  color: white;
 }

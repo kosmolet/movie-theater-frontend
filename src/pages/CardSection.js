@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import { CardElement } from "@stripe/react-stripe-js";
 import "./CardSection.css";
@@ -9,7 +8,7 @@ const CARD_ELEMENT_OPTIONS = {
       color: "#32325d",
       fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
       fontSmoothing: "antialiased",
-      fontSize: "16px",
+      fontSize: "20px",
       "::placeholder": {
         color: "#aab7c4",
       },
@@ -22,12 +21,7 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 function CardSection() {
-  return (
-    <label>
-      Card details
-      <CardElement options={CARD_ELEMENT_OPTIONS} />
-    </label>
-  );
+  return <CardElement options={CARD_ELEMENT_OPTIONS} />;
 }
 
 export default CardSection;

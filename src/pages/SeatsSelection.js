@@ -1,6 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/self-closing-comp */
 import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
@@ -13,13 +10,14 @@ const SeatsSelection = () => {
   const {
     state,
     chosenMovie,
-    clearSelectedSeats,
+    chosenShowtime,
     chosenSeats,
     setChosenSeats,
-    setChosenShowTime,
   } = useContext(AppContext);
   const [selectedSeats, changeSelectedSeats] = useState([]);
   const [seatsLimit, setLimit] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [tacken, setTacken] = useState([]);
 
   const handleSelectSeat = (seatNumber) => {
     if (selectedSeats.includes(seatNumber)) {
@@ -28,22 +26,38 @@ const SeatsSelection = () => {
       setLimit(false);
     } else if (selectedSeats.length === 5) {
       setLimit(true);
+    } else if (
+      chosenShowtime.unavailableSeats &&
+      chosenShowtime.unavailableSeats.includes(seatNumber)
+    ) {
+      setLimit(true);
+      setTacken(tacken.concat(seatNumber));
     } else {
       const allSelected = [...selectedSeats, seatNumber];
       changeSelectedSeats(allSelected);
     }
   };
+
+  const handleTakenSeats = () => {
+    for (let i = 1; i <= 25; i += 1) {
+      if (
+        chosenShowtime.unavailableSeats &&
+        chosenShowtime.unavailableSeats.includes(i)
+      ) {
+        setTacken(tacken.concat(i));
+      }
+    }
+  };
+
   const renderCinemaHall = () => {
     let cinemaHall = [];
     let isSelect;
-
     for (let i = 1; i <= 25; i += 1) {
       if (selectedSeats.includes(i)) {
         isSelect = true;
       } else {
         isSelect = false;
       }
-
       cinemaHall = [
         ...cinemaHall,
         <SeatItem
@@ -51,6 +65,10 @@ const SeatsSelection = () => {
           seatNumber={i}
           isSelect={isSelect}
           selectSeat={handleSelectSeat}
+          takenS={
+            chosenShowtime.unavailableSeats &&
+            chosenShowtime.unavailableSeats.includes(i)
+          }
         />,
       ];
     }
@@ -59,6 +77,12 @@ const SeatsSelection = () => {
 
   useEffect(() => {
     setChosenSeats(selectedSeats);
+    handleTakenSeats();
+    renderCinemaHall();
+  }, [selectedSeats]);
+
+  useEffect(() => {
+    setDisabled(!(selectedSeats.length > 0));
   }, [selectedSeats]);
 
   return (
@@ -66,10 +90,12 @@ const SeatsSelection = () => {
       <div>
         <h3>{chosenMovie.title}</h3>
       </div>
-      <div className="screen"></div>
+      <div className="screen" />
       <div className="cinema-hall-wrapper">{renderCinemaHall()}</div>
       <Link to="/payment">
-        <button type="button">checkout</button>
+        <button type="button" className="checkout-button" disabled={disabled}>
+          Pay
+        </button>
       </Link>
 
       <h3>

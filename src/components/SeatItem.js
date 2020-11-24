@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import empty from "../assets/emptychair.png";
 import taken from "../assets/unavailablechair.png";
@@ -29,12 +29,10 @@ const Seat = styled.div`
   }
 `;
 
-const SeatItem = ({ seatNumber, isSelect, selectSeat }) => {
-  const [isTaken, setSeatTacken] = useState(false);
-
+const SeatItem = ({ seatNumber, isSelect, selectSeat, takenS }) => {
   return (
     <Seat
-      className={(isTaken && "taken") || (isSelect && "chosen")}
+      className={(takenS && "taken") || (isSelect && "chosen")}
       onClick={() => selectSeat(seatNumber)}
       onKeyPress={() => selectSeat(seatNumber)}
       role="button"

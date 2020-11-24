@@ -110,13 +110,15 @@ export default function CheckoutForm() {
   }, [name, email]);
 
   return (
-    <div>
+    <div className="checkout-wrapper">
       {console.log("StoreCheckoutBefore", state)}
       <h1>Payments page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form onSubmit={handleSubmit} className="pay-form">
+        <label className="pay-labels">
           Name
           <input
+            className="pay-inputs"
+            autoComplete={false}
             name="name"
             type="text"
             placeholder="name"
@@ -124,9 +126,10 @@ export default function CheckoutForm() {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <label>
+        <label className="pay-labels">
           Email
           <input
+            className="pay-inputs"
             name="email"
             type="email"
             placeholder="your.mail@example.com"
@@ -134,8 +137,12 @@ export default function CheckoutForm() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
+        <label className="pay-labels-email">Card Credentials</label>
         <CardSection />
-        <button disabled={processing || !stripe}>Confirm order</button>
+
+        <button className="payment-button" disabled={processing || !stripe}>
+          Confirm order
+        </button>
         <p className={succeeded ? "result-message" : "result-message hidden"}>
           Payment succeeded, email will be send to you soon!
         </p>

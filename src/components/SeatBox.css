@@ -1,11 +1,11 @@
 .seat {
   height: 50px;
   width: 50px;
-  border: 5px solid darkolivegreen;
+  border: 5px solid #b279a7;
   border-radius: 8px;
   margin: 12px;
   font-size: 12px bold;
-  color: black;
+  color: white;
   cursor: pointer;
   display: flex;
   justify-content: center;

@@ -71,7 +71,7 @@
   top: 85vh;
   left: 60vw;
 }
-label {
+.label-movie-details {
   display: block;
   box-sizing: border-box;
   width: 0;
@@ -149,19 +149,21 @@ input:focus + label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
+  background-color: #081414;
   color: white;
   width: 40vw;
+  font-weight: 600;
   margin-left: 20vw;
   border-radius: 7px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(2, 128, 144, 0.2);
 }
-.dropdown-selection {
-  background-color: black;
+/* .dropdown-selection {
+  background-color: #081414;
   color: white;
   padding: 15px;
-  height: 20px;
-}
+  border-radius: 7px;
+  box-shadow: 0 10px 25px rgba(2, 128, 144, 0.2);
+} */
 
 @media screen and (max-width: 600px) {
   .overview {

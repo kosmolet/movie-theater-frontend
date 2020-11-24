@@ -1,9 +1,10 @@
 .booking-wrapper {
-  margin: auto;
   width: 90%;
   height: 100vh;
-  /* object-fit: contain;
-  display: flex; */
+  color: white;
+  /* object-fit: contain; */
+  /* display: flex;
+  flex-direction: column; */
 }
 .cinema-hall-wrapper {
   margin: auto;
@@ -31,4 +32,21 @@
   /* background-size: cover; */
   /* margin-left: 24px; */
   cursor: pointer;
+}
+
+.checkout-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  width: 20vw;
+  border-radius: 3px;
+  padding: 1rem 1rem;
+
+  background-image: linear-gradient(75deg, #d387ab 0%, #b279a7 74%);
+}
+.checkout-button:hover {
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  transition: all 0.2s;
+  color: white;
 }
