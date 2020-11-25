@@ -1,11 +1,14 @@
 .home-wrapper {
   padding-bottom: 15vh;
+  max-width: 100%;
 }
 
 .movie-row-found {
   flex-flow: row wrap;
   display: flex;
+  max-width: 100%;
 }
 .header-active-search {
   color: white;
+  max-width: 100%;
 }

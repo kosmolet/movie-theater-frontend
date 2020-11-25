@@ -70,7 +70,6 @@ const MovieDetails = ({ match }) => {
   };
   useEffect(() => {
     setddResShowtimes(refreshShowtimes());
-    console.log("ResShowtimes", dropdownValue);
   }, [dropdownValue]);
 
   const setShowTimeAndReservations = async (showtimeId) => {
@@ -140,7 +139,7 @@ const MovieDetails = ({ match }) => {
   };
 
   return (
-    <div className="movie-details">
+    <div className="content-wrapper">
       {console.log("STORE MovDetails", state)}
       <header
         className="banner"
@@ -152,7 +151,7 @@ const MovieDetails = ({ match }) => {
           backgroundPosition: "center center",
         }}
       />
-      <div className="poster-shadow"> </div>
+      <div className="banner-shadow"> </div>
       <div className="poster-img-wrapper">
         <img
           className="poster-img"
@@ -160,7 +159,7 @@ const MovieDetails = ({ match }) => {
           alt={`${chosenMovie?.title} poster`}
         />
 
-        <div className="title-genres-duration">
+        <div className="img-info-wrapper">
           <h3>{chosenMovie.title}</h3>
           <div className="genres">
             {chosenMovie.genres ? (

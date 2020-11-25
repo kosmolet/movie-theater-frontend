@@ -18,7 +18,7 @@ const Movies = () => {
     moviesUpcoming,
   ] = useFetchMovies();
   const [searchText, setText] = useState("");
-  const { state, setMoviesMdb } = useContext(AppContext);
+  const { setMoviesMdb } = useContext(AppContext);
 
   useEffect(() => {
     if (searchText.length > 1) {
@@ -41,7 +41,6 @@ const Movies = () => {
 
   return (
     <div className="home-wrapper">
-      {console.log(state, "HOME store")}
       <Banner movies={allMoviesFromDb} />
       <SearchBar onSearch={onSearch} />
       {moviesFound.length > 0 ? (

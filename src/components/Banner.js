@@ -42,7 +42,7 @@ const Banner = ({ movies }) => {
           </Link>
         </div>
         <h1 className="banner_description">
-          {truncateString(movie?.overview, 150)}
+          {truncateString(movie?.overview, 170)}
         </h1>
       </div>
       <div className="banner_shadow"> </div>

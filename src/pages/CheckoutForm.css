@@ -1,12 +1,27 @@
+.payment-seats-info {
+  position: absolute;
+  top: 15vh;
+  left: 15vw;
+  max-width: 100%;
+  color: aliceblue;
+  font-size: 25px;
+  font-weight: 800;
+  text-shadow: black;
+}
+
+.seats-info,
+.price-info {
+  color: rgb(158, 199, 202);
+}
+
 .checkout-wrapper {
-  width: 100%;
-  height: 100vh;
-  padding-bottom: 350px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: flex;
-  align-items: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 .result-message {
   line-height: 22px;
   font-size: 1.3rem;
@@ -14,55 +29,39 @@
   overflow: hidden;
 }
 
-.result-message a {
-  font-weight: 600;
-  text-decoration: none;
-  color: white;
-}
-
 .hidden {
   display: none;
 }
 
-.pay-form {
-  width: 42.5vw;
-  margin-left: 5vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex;
-}
 .pay-labels {
   color: #b91372;
   display: flex;
   flex-direction: column;
-  justify-content: flex;
-  margin-top: 2vh;
+  margin-top: 4vh;
   font-size: 1.2rem;
 }
+
 .pay-labels-email {
   color: #b91372;
   display: flex;
-  flex-direction: column;
   justify-content: flex;
-  margin-top: 2vh;
+  margin-top: 4vh;
   font-size: 1.2rem;
 }
 
 .pay-inputs {
-  height: 4.5vh;
+  width: 42.5vw;
+  height: 6vh;
   border-radius: 3px;
   font-size: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex;
   border: 1px solid transparent;
-  box-shadow: 0 10px 25px rgba(2, 128, 144, 0.5);
+  box-shadow: 0 10px 25px rgba(2, 128, 144, 0.3);
   background-color: rgb(5, 10, 10);
   color: #9595bb;
 }
 
 .payment-button {
-  margin-top: 3vh;
+  margin-top: 10vh;
   width: 42.5vw;
   font-size: 1.3rem;
   cursor: pointer;
@@ -78,4 +77,33 @@
   background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
   transition: all 0.2s;
   color: white;
+}
+.payment-button:disabled {
+  background-image: linear-gradient(75deg, #a7788d 0%, #a07d99 74%);
+  transition: all 0.2s;
+  color: rgb(99, 88, 88);
+  cursor: not-allowed;
+}
+.movieInfo-payment {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 15vh;
+}
+
+@media screen and (max-width: 600px) {
+  /* .checkout-wrapper {
+    width: 90%;
+  }
+
+  .pay-form {
+    width: 90%;
+  } */
+
+  .pay-inputs,
+  .pay-labels,
+  .payment-button {
+    width: 95%;
+  }
 }

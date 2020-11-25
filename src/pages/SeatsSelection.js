@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
@@ -5,19 +7,27 @@ import AppContext from "../context/context";
 import "./SeatsSelection.css";
 import SeatItem from "../components/SeatItem";
 import SeatBox from "../components/SeatBox";
+import { IMAGE_BASE_URL } from "../config";
+import month from "../config/DaysOfMonth";
+import days from "../config/WeekDays";
 
 const SeatsSelection = () => {
-  const {
-    state,
-    chosenMovie,
-    chosenShowtime,
-    chosenSeats,
-    setChosenSeats,
-  } = useContext(AppContext);
+  const { state, chosenMovie, chosenShowtime, setChosenSeats } = useContext(
+    AppContext
+  );
   const [selectedSeats, changeSelectedSeats] = useState([]);
   const [seatsLimit, setLimit] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [tacken, setTacken] = useState([]);
+  const [time, setTime] = useState("");
+  const [dmTime, setDateTime] = useState("");
+
+  const dayOfWeek = (dateStr) => {
+    const date = new Date(dateStr);
+    const dayIndex = date.getDay() === 0 ? 6 : date.getDay() - 1;
+    const day = days[dayIndex];
+    return day;
+  };
 
   const handleSelectSeat = (seatNumber) => {
     if (selectedSeats.includes(seatNumber)) {
@@ -78,38 +88,54 @@ const SeatsSelection = () => {
   useEffect(() => {
     setChosenSeats(selectedSeats);
     handleTakenSeats();
+    setDisabled(!(selectedSeats.length > 0 && chosenShowtime.startAt));
     renderCinemaHall();
   }, [selectedSeats]);
 
   useEffect(() => {
-    setDisabled(!(selectedSeats.length > 0));
-  }, [selectedSeats]);
+    if (chosenShowtime.startAt !== undefined) {
+      setTime(`${chosenShowtime?.startAt.slice(11, 16)} 
+      ${dayOfWeek(chosenShowtime?.startAt)}`);
+      setDateTime(`${chosenShowtime?.startAt.slice(8, 10)}
+      ${month[chosenShowtime?.startAt.slice(5, 7) - 1]}`);
+    } else {
+      setDisabled(true);
+    }
+  }, [chosenShowtime]);
 
   return (
-    <div className="booking-wrapper">
-      <div>
-        <h3>{chosenMovie.title}</h3>
-      </div>
-      <div className="screen" />
-      <div className="cinema-hall-wrapper">{renderCinemaHall()}</div>
-      <Link to="/payment">
-        <button type="button" className="checkout-button" disabled={disabled}>
-          Pay
-        </button>
-      </Link>
-
-      <h3>
-        Selected Seats:
-        <br />
-        {selectedSeats.map((i) => (
-          <SeatBox
-            key={uuidv4()}
-            seatNumber={i}
-            selectSeat={handleSelectSeat}
+    <div className="content-wrapper">
+      {console.log(chosenShowtime)}
+      <div className="cinema-wrapper">
+        <div className="screen" />
+        <h6 className="title-hall">{chosenShowtime?.hallName}</h6>
+        <div className="movie-on-seats">
+          <h4 className="title-seats">{chosenMovie?.title}</h4>
+          <img
+            className="img-seats"
+            src={`${IMAGE_BASE_URL}w185${chosenMovie?.poster_path}`}
+            alt={`${chosenMovie.title} poster`}
           />
-        ))}
-      </h3>
-      {console.log("STORE SeatsSelection", state)}
+          <h6 className="time-seats">{time}</h6>
+          <h6 className="time-seats">{dmTime}</h6>
+        </div>
+        <div className="cinema-hall-wrapper">{renderCinemaHall()}</div>
+        <h3>Selected Seats:</h3>
+        <span>
+          {selectedSeats.map((i) => (
+            <SeatBox
+              key={uuidv4()}
+              seatNumber={i}
+              selectSeat={handleSelectSeat}
+            />
+          ))}
+        </span>
+        <Link to="/payment">
+          <button type="button" className="pay-button" disabled={disabled}>
+            Pay
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import CardSection from "./CardSection";
 import fetchBaseURL from "../axios";
 import AppContext from "../context/context";
 import "./CheckoutForm.css";
+import { IMAGE_BASE_URL } from "../config";
 
 const {
   REACT_APP_EMAILJS_USERID,
@@ -45,7 +46,7 @@ export default function CheckoutForm() {
     seats: chosenSeats.toString(),
     hall: chosenShowtime.hallName,
   };
-  const sendEmail = (n, em) => {
+  const sendEmail = () => {
     emailjs
       .send(
         REACT_APP_SERVICE_ID,
@@ -98,6 +99,7 @@ export default function CheckoutForm() {
         console.log(result);
         console.log("state PaymentSuccess", state);
         setError(null);
+        setDisabled(true);
         setProcessing(false);
         setSucceeded(true);
         sendEmail();
@@ -106,47 +108,88 @@ export default function CheckoutForm() {
   };
 
   useEffect(() => {
-    console.log(name, email);
+    if (name.length < 2 || email.length < 5) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+    console.log(disabled);
   }, [name, email]);
 
-  return (
-    <div className="checkout-wrapper">
-      {console.log("StoreCheckoutBefore", state)}
-      <h1>Payments page</h1>
-      <form onSubmit={handleSubmit} className="pay-form">
-        <label className="pay-labels">
-          Name
-          <input
-            className="pay-inputs"
-            autoComplete={false}
-            name="name"
-            type="text"
-            placeholder="name"
-            required
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label className="pay-labels">
-          Email
-          <input
-            className="pay-inputs"
-            name="email"
-            type="email"
-            placeholder="your.mail@example.com"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label className="pay-labels-email">Card Credentials</label>
-        <CardSection />
+  useEffect(() => {
+    setDisabled(true);
+  }, []);
 
-        <button className="payment-button" disabled={processing || !stripe}>
-          Confirm order
-        </button>
-        <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded, email will be send to you soon!
-        </p>
-      </form>
+  return (
+    <div className="content-wrapper">
+      <header
+        className="banner"
+        style={{
+          backgroundImage: `url(
+                    "https://image.tmdb.org/t/p/original/${chosenMovie?.backdrop_path}"
+                )`,
+          backgroundSize: "cover",
+          opacity: "0.3",
+          backgroundPosition: "center center",
+        }}
+      />
+      <div className="banner-shadow"> </div>
+      <div className="poster-img-wrapper">
+        <img
+          className="poster-img"
+          src={`${IMAGE_BASE_URL}w185${chosenMovie?.poster_path}`}
+          alt={`${chosenMovie?.title} poster`}
+        />
+        <div className="img-info-wrapper">
+          <h3>{chosenMovie.title}</h3>
+
+          <span className="seats-info">
+            {`Selected seats: 
+          ${chosenSeats.toString()}`}
+          </span>
+          <br />
+          <span className="price-info">
+            {`Total Price: 
+          ${chosenSeats.length * 20}SEK`}
+          </span>
+        </div>
+      </div>
+      <div className="checkout-wrapper">
+        {console.log("StoreCheckoutBefore", state)}
+        <form onSubmit={handleSubmit} className="pay-form">
+          <label className="pay-labels">
+            Name
+            <input
+              className="pay-inputs"
+              name="name"
+              type="text"
+              placeholder="name"
+              required
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <label className="pay-labels">
+            Email
+            <input
+              className="pay-inputs"
+              name="email"
+              type="email"
+              placeholder="your.mail@example.com"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <label className="pay-labels-email">Card Credentials</label>
+          <CardSection />
+
+          <button className="payment-button" disabled={processing || !stripe}>
+            Confirm order
+          </button>
+          <p className={succeeded ? "result-message" : "result-message hidden"}>
+            Payment succeeded, email will be send to you soon!
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

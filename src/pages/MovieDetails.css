@@ -1,13 +1,3 @@
-.movie-details {
-  background-color: #2d3436;
-  background-image: linear-gradient(360deg, #2d3436 0%, #000000 74%);
-  width: 100%;
-  padding-bottom: 500px;
-  color: white;
-  background-size: cover;
-  background-position: center center;
-}
-
 .youtube-trailer {
   position: absolute;
   top: 0;
@@ -16,36 +6,24 @@
 
 .poster-img-wrapper {
   position: absolute;
-  top: 37vh;
+  top: 35vh;
   left: 15vw;
-  width: 100%;
+  max-width: 100%;
 }
 
-.poster-shadow {
-  position: sticky;
-  margin-top: -48.5vh;
-  height: 50vh;
-
-  background-image: linear-gradient(
-    180deg,
-    transparent,
-    rgba(43, 41, 42, 0.61),
-    black
-  );
-}
 .poster-img {
   border-radius: 5px;
   box-shadow: 0px 0px 21px 4px black;
 }
-.title-genres-duration {
+
+.img-info-wrapper {
   position: absolute;
-  top: 15vh;
+  top: 12vh;
   left: 200px;
-  width: 100%;
+  width: 400px;
   color: aliceblue;
   font-size: 25px;
   font-weight: 800;
-  -webkit-text-stroke: 0.5px rgba(6, 25, 27, 0.7);
   text-shadow: black;
 }
 
@@ -54,23 +32,27 @@
   font-size: 15px;
   font-weight: 800;
 }
+
 .duration {
   color: rgb(253, 241, 253);
   font-size: 15px;
   font-weight: 600;
   color: grey;
 }
+
 .year {
   color: rgb(253, 241, 253);
   font-size: 15px;
   font-weight: 600;
   color: grey;
 }
+
 .playpause {
   position: absolute;
   top: 85vh;
   left: 60vw;
 }
+
 .label-movie-details {
   display: block;
   box-sizing: border-box;
@@ -82,32 +64,38 @@
   border-style: solid;
   border-width: 27px 0 27px 40px;
 }
+
 input[type="checkbox"] {
   position: absolute;
-  left: -9999px;
+  display: none;
 }
+
 input:checked + label {
   border-style: double;
   border-width: 0px 0 0px 40px;
 }
+
 input:focus + label {
   box-shadow: 0 0 5px lightblue;
   border-radius: 8px;
 }
+
 .overview {
   padding: 8vh 20vw;
   width: 40%;
   font-family: "Texturina", serif;
 }
+
 .showtimes {
   padding: 5vh 20vw;
   width: 40%;
 }
+
 .showtime-title {
   font-size: 20px;
   font-weight: 800;
-  -webkit-text-stroke: 0.5px rgba(2, 128, 144, 0.8);
 }
+
 .showtime {
   display: flex;
   flex-direction: row;
@@ -121,12 +109,13 @@ input:focus + label {
   font-size: 15px;
   font-weight: 800;
 }
+
 .showtime-time {
   font-weight: 800;
   font-size: 18px;
   color: white;
-  -webkit-text-stroke: 0.5px rgba(18, 23, 24, 0.8);
 }
+
 .tickets-button {
   cursor: pointer;
   outline: none;
@@ -137,6 +126,7 @@ input:focus + label {
   justify-content: space-between;
   background-image: linear-gradient(75deg, #d387ab 0%, #b279a7 74%);
 }
+
 .tickets-button:hover {
   background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
   transition: all 0.2s;
@@ -146,24 +136,21 @@ input:focus + label {
 .dropdown-selector {
   padding: 15px;
   cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: #081414;
   color: white;
   width: 40vw;
   font-weight: 600;
-  margin-left: 20vw;
+  margin: 0 5vw 6vh 20vw;
   border-radius: 7px;
   box-shadow: 0 10px 25px rgba(2, 128, 144, 0.2);
 }
-/* .dropdown-selection {
+
+.dropdown-selection {
   background-color: #081414;
   color: white;
-  padding: 15px;
-  border-radius: 7px;
-  box-shadow: 0 10px 25px rgba(2, 128, 144, 0.2);
-} */
+  font-weight: 700;
+  border-radius: 17px;
+}
 
 @media screen and (max-width: 600px) {
   .overview {
@@ -176,16 +163,87 @@ input:focus + label {
     top: 105vh;
     left: 65vw;
   }
+
   .poster-img-wrapper {
     left: 1vw;
   }
-  .title-genres-duration {
-    top: -29vh;
-    left: 9vw;
-    text-shadow: rgb(20, 18, 7) 1px 0 10px;
+
+  .img-info-wrapper {
+    top: -18vh;
+    left: 12px;
+    display: inline;
+    font-size: 15px;
+    width: 300px;
+    font-weight: 800;
+    color: white;
   }
+
   .showtimes {
     padding: 5vh 2vw;
     width: 90%;
+  }
+
+  .duration,
+  .year {
+    color: white;
+  }
+
+  .dropdown-selector {
+    width: 80vw;
+    margin: 0 5vw 5vh 2vw;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .poster-img-wrapper {
+    position: absolute;
+    top: 50vh;
+    left: 15vw;
+    max-width: 100%;
+  }
+
+  .poster-img {
+    border-radius: 5px;
+    box-shadow: 0px 0px 21px 4px black;
+  }
+
+  .img-info-wrapper {
+    position: absolute;
+    top: 4vh;
+    left: 220px;
+    width: 700px;
+    color: aliceblue;
+    font-size: 35px;
+    font-weight: 700;
+  }
+
+  .playpause {
+    position: absolute;
+    top: 85vh;
+    left: 65vw;
+  }
+
+  .label-movie-details {
+    height: 80px;
+    border-width: 60px 0 60px 100px;
+  }
+
+  input:checked + label {
+    border-width: 0px 0 0px 80px;
+  }
+
+  .youtube-trailer {
+    position: absolute;
+    top: 20vh;
+    right: 0;
+    width: 50%;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .playpause {
+    position: absolute;
+    top: 105vh;
+    left: 65vw;
   }
 }

@@ -21,7 +21,8 @@
   text-decoration: none;
   /*links unclickable*/
   pointer-events: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-family: "Asap", sans-serif;
 }
 .footer .social-links a {
   pointer-events: auto;
@@ -30,7 +31,8 @@
 .ft-title {
   font-weight: bold;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-family: "Asap", sans-serif;
 }
 
 .ft-main {
@@ -41,12 +43,12 @@
   padding: 0.5rem;
   min-width: 12.5rem;
 }
-@media only screen and (min-width: 29.8125rem /* 477px */) {
+@media only screen and (min-width: 477px) {
   .ft-main {
     justify-content: space-evenly;
   }
 }
-@media only screen and (min-width: 77.5rem /* 1240px */) {
+@media only screen and (min-width: 1240px) {
   .ft-main {
     justify-content: space-evenly;
   }

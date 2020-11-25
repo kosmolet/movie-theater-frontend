@@ -1,21 +1,10 @@
-.booking-wrapper {
-  width: 90%;
-  height: 100vh;
-  color: white;
-  /* object-fit: contain; */
-  /* display: flex;
-  flex-direction: column; */
-}
-.cinema-hall-wrapper {
-  margin: auto;
-  width: 250px;
-  height: 35vh;
+.cinema-wrapper {
+  padding-top: 60px;
   display: flex;
-  /* flex-direction: row; */
-  /* align-items: center; */
-  padding-top: 50px;
-  flex-flow: row wrap;
+  flex-direction: column;
+  align-items: center;
 }
+
 .screen {
   background-color: #fff;
   height: 15vh;
@@ -23,18 +12,33 @@
   margin: auto;
   transform: rotateX(-45deg);
   align-items: center;
-  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 13px 15px 16px rgba(255, 255, 255, 0.92);
 }
+
+.cinema-hall-wrapper {
+  margin: auto;
+  width: 260px;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  flex-flow: row wrap;
+}
+
+.title-hall {
+  font-size: 18px;
+  color: #b91372;
+  margin: 5px;
+}
+
 .seat-item {
   width: 25px;
   height: 25px;
-  /* background: no-repeat center center; */
-  /* background-size: cover; */
-  /* margin-left: 24px; */
   cursor: pointer;
 }
 
-.checkout-button {
+.pay-button {
   cursor: pointer;
   outline: none;
   border: none;
@@ -42,11 +46,59 @@
   width: 20vw;
   border-radius: 3px;
   padding: 1rem 1rem;
-
+  margin-top: 50px;
   background-image: linear-gradient(75deg, #d387ab 0%, #b279a7 74%);
 }
-.checkout-button:hover {
+
+.pay-button:hover {
   background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
   transition: all 0.2s;
   color: white;
+}
+
+.pay-button:disabled {
+  background-image: linear-gradient(75deg, #a7788d 0%, #a07d99 74%);
+  transition: all 0.2s;
+  color: rgb(99, 88, 88);
+  cursor: not-allowed;
+}
+
+.movie-on-seats {
+  position: absolute;
+  left: 2vw;
+  top: 25vh;
+  border-radius: 4px;
+  margin: 0;
+}
+.img-seats {
+  border-radius: 4px;
+}
+.title-seats {
+  font-size: 20px;
+  margin: 2px;
+}
+
+.time-seats {
+  margin: 5px;
+  font-size: 20px;
+  color: #b91372;
+}
+
+@media screen and (max-width: 600px) {
+  .pay-button {
+    width: 70vw;
+    margin-top: 20px;
+  }
+  .cinema-hall-wrapper {
+    padding-top: 20px;
+  }
+  .movie-on-seats {
+    display: none;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .img-seats {
+    left: 20vw;
+    top: 25vh;
+  }
 }
