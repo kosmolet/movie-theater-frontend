@@ -1,0 +1,13 @@
+{
+  "title": "Hi!",
+  "titleMovieRow": {
+    "nowInTheater": "Movies Now",
+    "commingSoon": "Upcoming movies",
+    "retro": "Retrospective",
+    "family": "Family",
+    "found": "Search result",
+    "news": "News from Moviestaden",
+    "toplist": "Top rated movies"
+  },
+  "buyTicket": "Buy tickets"
+}

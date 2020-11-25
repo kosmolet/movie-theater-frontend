@@ -1,0 +1,13 @@
+{
+  "title": "Hej",
+  "titleMovieRow": {
+    "nowInTheater": "För närvarande på bio",
+    "commingSoon": "Kommande filmer",
+    "retro": "Retrofilmer",
+    "family": "Barn och Familj",
+    "found": "Sökresultat",
+    "news": "Nyheter från Moviestaden",
+    "toplist": "Topplista"
+  },
+  "buyTicket": "Boka biljetter"
+}

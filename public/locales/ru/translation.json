@@ -1,0 +1,13 @@
+{
+  "title": "Привет",
+  "titleMovieRow": {
+    "nowInTheater": "Сейчас в кино",
+    "commingSoon": "Скоро в кино",
+    "retro": "Ретро показ",
+    "family": "Семейные фильмы",
+    "found": "Найденные фильмы",
+    "news": "Новости кинотеатра Moviestaden",
+    "toplist": "Популярные фильмы"
+  },
+  "buyTicket": "Купить билеты"
+}

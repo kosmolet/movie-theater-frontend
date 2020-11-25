@@ -24,13 +24,22 @@
   text-shadow: 0 0 10px black, 0 0 20px plum, 0 0 30px plum;
 }
 
-.header-options {
+.switch-lang-div {
   position: fixed;
-  right: 20vw;
-  width: 2vw;
+  right: 5vw;
+  max-width: 20%;
   object-fit: contain;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.header-options div {
-  cursor: pointer;
+.switch-lang-buttons {
+  background-color: transparent;
+  color: white;
+  border-color: transparent;
+
+  font-weight: 600;
+  font-size: 1.1rem;
 }

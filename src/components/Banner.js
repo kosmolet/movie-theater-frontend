@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./Banner.css";
 
 const Banner = ({ movies }) => {
   const [movie, setMovie] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const randomMovie =
@@ -37,7 +39,7 @@ const Banner = ({ movies }) => {
         <div className="banner_buttons">
           <Link to={`/movie/${movie?._id || movie?.id}`}>
             <button type="button" className="banner_button">
-              Buy Ticket
+              {t("buyTicket")}
             </button>
           </Link>
         </div>

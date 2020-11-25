@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from "react-i18next";
 import MovieRow from "../components/MovieRow";
 import Banner from "../components/Banner";
 import MovieCard from "../components/MovieCard";
@@ -10,6 +11,7 @@ import "./Home.css";
 
 const Movies = () => {
   const [moviesFound, setFoundMovies] = useState([]);
+  const { t } = useTranslation();
   const [
     allMovies,
     allMoviesFromDb,
@@ -45,7 +47,7 @@ const Movies = () => {
       <SearchBar onSearch={onSearch} />
       {moviesFound.length > 0 ? (
         <div className="movie-row-wrapper">
-          <h2>Movies found:</h2>
+          <h2>{t("titleMovieRow.found")}</h2>
           <div className="movie-row-found">
             {moviesFound.map((movie) => (
               <MovieCard key={uuidv4()} movie={movie} />
@@ -55,10 +57,26 @@ const Movies = () => {
       ) : (
         <p> </p>
       )}
-      <MovieRow key={uuidv4()} title="Buy Ticket" movies={allMoviesFromDb} />
-      <MovieRow key={uuidv4()} title="Coming Soon" movies={moviesUpcoming} />
-      <MovieRow key={uuidv4()} title="Retrospective" movies={moviesTopRated} />
-      <MovieRow key={uuidv4()} title="Family" movies={moviesFamily} />
+      <MovieRow
+        key={uuidv4()}
+        title={t("titleMovieRow.nowInTheater")}
+        movies={allMoviesFromDb}
+      />
+      <MovieRow
+        key={uuidv4()}
+        title={t("titleMovieRow.commingSoon")}
+        movies={moviesUpcoming}
+      />
+      <MovieRow
+        key={uuidv4()}
+        title={t("titleMovieRow.retro")}
+        movies={moviesTopRated}
+      />
+      <MovieRow
+        key={uuidv4()}
+        title={t("titleMovieRow.family")}
+        movies={moviesFamily}
+      />
     </div>
   );
 };
