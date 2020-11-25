@@ -64,6 +64,21 @@ export default function CheckoutForm() {
       );
   };
 
+  const createReservation = async (movieId, showtimeId) => {
+    const res = await fetchBaseURL.post(
+      `movies/${movieId}/showtimes/${showtimeId}/reservations`,
+      {
+        username: name,
+        email: email,
+        isPaymentSucceed: true,
+        seats: chosenSeats,
+        totalPrice: chosenSeats.length * 20,
+        showtime: showtimeId,
+      }
+    );
+    return res.data;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!stripe || !elements) {
@@ -90,7 +105,7 @@ export default function CheckoutForm() {
 
     if (result.error) {
       console.log(result.error.message);
-      setError(`Payment failed ${result.error.message}`);
+      setError(` ${result.error.message}`);
       setProcessing(false);
       setSucceeded(false);
     } else {
@@ -102,6 +117,7 @@ export default function CheckoutForm() {
         setDisabled(true);
         setProcessing(false);
         setSucceeded(true);
+        createReservation(chosenMovie._id, chosenShowtime._id);
         sendEmail();
       }
     }
@@ -181,8 +197,15 @@ export default function CheckoutForm() {
           </label>
           <label className="pay-labels-email">Card Credentials</label>
           <CardSection />
-
-          <button className="payment-button" disabled={processing || !stripe}>
+          <p
+            className={
+              error ? "result-message-error" : "result-message-error hidden"
+            }
+          >
+            {error}
+            Please fix it and try again
+          </p>
+          <button className="payment-button" disabled={disabled}>
             Confirm order
           </button>
           <p className={succeeded ? "result-message" : "result-message hidden"}>
