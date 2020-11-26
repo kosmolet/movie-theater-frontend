@@ -1,5 +1,4 @@
 {
-  "title": "Hi!",
   "titleMovieRow": {
     "nowInTheater": "Movies Now",
     "commingSoon": "Upcoming movies",
@@ -9,5 +8,46 @@
     "news": "News from Moviestaden",
     "toplist": "Top rated movies"
   },
-  "buyTicket": "Buy tickets"
+  "buyTicket": "Buy tickets",
+  "footerTitles": {
+    "guests": "Guests",
+    "members": "Members",
+    "about": "About Moviestaden"
+  },
+  "ftGuests": {
+    "reservations": "My reservations",
+    "customerService": "Customer service",
+    "QA": "Questions and answers",
+    "pricing": "Pricing",
+    "largerGroups": "Book larger groups"
+  },
+  "ftMembers": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "aboutMembership": "About the membership"
+  },
+  "ftAbout": {
+    "Press": "Press",
+    "Job": "Job",
+    "socialMedia": "Social Media",
+    "leaveFeedback": "Leave feedback"
+  },
+  "payTitle": "Pay by credit card",
+  "namePerson": "Name",
+  "email": "Email",
+  "cardPerson": "Card details",
+  "confirmOrder": "Pay",
+  "seatsSelected": "Selected seats: ",
+  "totalCost": "Total cost: ",
+  "showtimes": "Showtimes",
+  "ticketsBuy": "Buy tickets",
+  "proceedToPayment": "Proceed to payment",
+  "noShowtimes": "Showtimes are not available for this movie now!",
+  "from": "From ",
+  "searchMovie": "Search movies",
+  "h": "h",
+  "min": "min",
+  "selectSeats": "Seats",
+  "errorPayment": "Please fix errors to finish the payment",
+  "donePayment": "Thank you! Payment succeeded. We’ll send you a confirmation email with ticket details."
 }

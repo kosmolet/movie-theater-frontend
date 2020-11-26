@@ -1,5 +1,4 @@
 {
-  "title": "Прывiтанне!",
   "titleMovieRow": {
     "nowInTheater": "Зараз у кінатэатры",
     "commingSoon": "Будучыя фільмы",
@@ -9,5 +8,46 @@
     "news": "Навіны кінатэатра Moviestaden",
     "toplist": "Спіс лепшых фільмаў"
   },
-  "buyTicket": "Купіць білеты"
+  "buyTicket": "Купіць білеты",
+  "footerTitles": {
+    "guests": "Госці",
+    "members": "Пра Сяброўства",
+    "about": "Пра Moviestaden"
+  },
+  "ftGuests": {
+    "reservations": "Мае заказы",
+    "customerService": "Спажывецкая служба",
+    "QA": "Пытанні і адказы",
+    "pricing": "Цэны",
+    "largerGroups": "Замоўце большыя групы"
+  },
+  "ftMembers": {
+    "signIn": "Увайсці",
+    "signUp": "Зарэгістравацца",
+    "aboutMembership": "Пра сяброўства"
+  },
+  "ftAbout": {
+    "Press": "Прэса",
+    "Job": "Праца",
+    "socialMedia": "Сацыяльныя сеткі",
+    "leaveFeedback": "Пакінуць водгук"
+  },
+  "payTitle": "Аплата крэдытнай картай",
+  "namePerson": "Імя",
+  "email": "Электронная пошта",
+  "cardPerson": "Дадзеныя карты",
+  "confirmOrder": "Плаціць",
+  "seatsSelected": "Абраныя месцы: ",
+  "totalCost": "Агульны кошт: ",
+  "showtimes": "Паказы",
+  "ticketsBuy": "Бiлеты",
+  "proceedToPayment": "Перайсці да аплаты",
+  "noShowtimes": "Часы паказу гэтага фільма зараз недаступны!",
+  "from": "з ",
+  "searchMovie": "Пошук фільмаў",
+  "h": "г",
+  "min": "хв",
+  "selectSeats": "Месцы",
+  "errorPayment": "Kалі ласка, выпраўцеыпраўце памылкі, каб скончыць плацеж",
+  "donePayment": "Дзякуй! Аплата атрымалася. Мы вышлем вам ліст з пацверджаннем з падрабязнасцямі білетаў."
 }

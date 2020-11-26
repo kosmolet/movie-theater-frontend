@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import AppContext from "../context/context";
@@ -21,6 +22,7 @@ const SeatsSelection = () => {
   const [tacken, setTacken] = useState([]);
   const [time, setTime] = useState("");
   const [dmTime, setDateTime] = useState("");
+  const { t } = useTranslation();
 
   const dayOfWeek = (dateStr) => {
     const date = new Date(dateStr);
@@ -120,7 +122,7 @@ const SeatsSelection = () => {
           <h6 className="time-seats">{dmTime}</h6>
         </div>
         <div className="cinema-hall-wrapper">{renderCinemaHall()}</div>
-        <h3>Selected Seats:</h3>
+        <h3>{t("seatsSelected")}</h3>
         <span>
           {selectedSeats.map((i) => (
             <SeatBox
@@ -132,7 +134,7 @@ const SeatsSelection = () => {
         </span>
         <Link to="/payment">
           <button type="button" className="pay-button" disabled={disabled}>
-            Pay
+            {t("proceedToPayment")}
           </button>
         </Link>
       </div>

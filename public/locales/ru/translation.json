@@ -1,5 +1,4 @@
 {
-  "title": "Привет",
   "titleMovieRow": {
     "nowInTheater": "Сейчас в кино",
     "commingSoon": "Скоро в кино",
@@ -9,5 +8,46 @@
     "news": "Новости кинотеатра Moviestaden",
     "toplist": "Популярные фильмы"
   },
-  "buyTicket": "Купить билеты"
+  "buyTicket": "Купить билеты",
+  "footerTitles": {
+    "guests": "Гости",
+    "members": "Аккаунт",
+    "about": "О Moviestaden"
+  },
+  "ftGuests": {
+    "reservations": "Мои бронирования",
+    "customerService": "Обслуживание клиентов",
+    "QA": "Вопросы и ответы",
+    "pricing": "Ценообразование",
+    "largerGroups": "Бронируйте большие группы"
+  },
+  "ftMembers": {
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "aboutMembership": "О членстве"
+  },
+  "ftAbout": {
+    "Press": "Пресса",
+    "Job": "Работа",
+    "socialMedia": "Социальные медиа",
+    "leaveFeedback": "Оставить отзыв"
+  },
+  "payTitle": "Оплатить кредитной картой",
+  "namePerson": "Имя",
+  "email": "Электронная почта",
+  "cardPerson": "Данные карты",
+  "confirmOrder": "Платить",
+  "seatsSelected": "Выбранные места: ",
+  "totalCost": "Общая стоимость: ",
+  "showtimes": "Сеансы",
+  "ticketsBuy": "Билеты",
+  "proceedToPayment": "Перейти к оплате",
+  "noShowtimes": "Расписание сеансов для этого фильма сейчас недоступно!",
+  "from": "с ",
+  "searchMovie": "Поиск фильмов",
+  "h": "ч",
+  "min": "мин",
+  "selectSeats": "Места",
+  "errorPayment": "Пожалуйста, исправьте ошибки, чтобы завершить оплату",
+  "donePayment": "Спасибо! Оплата прошла успешно. Мы отправим вам подтверждение по электронной почте с деталями билета."
 }

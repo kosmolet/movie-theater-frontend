@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 function Navbar() {
   const [show, handleShow] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const handleClick = (lang) => {
     i18n.changeLanguage(lang);
@@ -29,7 +29,6 @@ function Navbar() {
       </Link>
 
       <div className="switch-lang-div">
-        <p>{t("title")}</p>
         <button
           className="switch-lang-buttons"
           type="button"

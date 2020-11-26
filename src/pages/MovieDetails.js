@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import "./MovieDetails.css";
@@ -17,7 +18,7 @@ const MovieDetails = ({ match }) => {
   const [itemsDropdown, setDropdownItems] = useState([]);
   const [dropdownValue, setDropdownValue] = useState("All");
   const [ddResShowtimes, setddResShowtimes] = useState([]);
-
+  const { t } = useTranslation();
   const {
     state,
     chosenDay,
@@ -38,7 +39,7 @@ const MovieDetails = ({ match }) => {
   const timeConvert = (num) => {
     const hours = Math.floor(num / 60);
     const minutes = num % 60;
-    return `${hours}h${" "}${minutes}min${" "}`;
+    return `${hours}${t("h")}${" "}${minutes}${t("min")}${" "}`;
   };
 
   const beautifyDate = (date) => {
@@ -179,7 +180,7 @@ const MovieDetails = ({ match }) => {
             {" | "}
           </span>
           <span className="year">
-            From:
+            {t("from")}
             {chosenMovie.release_date
               ? chosenMovie.release_date.slice(0, 10)
               : "soon"}
@@ -215,7 +216,7 @@ const MovieDetails = ({ match }) => {
         ))}
       </select>
       <div className="showtimes">
-        <span className="showtime-title"> Showtimes: </span>
+        <span className="showtime-title">{t("showtimes")}</span>
         {ddResShowtimes.length > 0 ? (
           ddResShowtimes.map((showtime) => (
             <div key={uuidv4()} className="showtime">
@@ -231,7 +232,7 @@ const MovieDetails = ({ match }) => {
                   onClick={(e) => setShowTimeAndReservations(e.target.id)}
                   key={uuidv4()}
                 >
-                  TICKETS
+                  {t("selectSeats")}
                 </button>
               </Link>
             </div>
@@ -239,9 +240,7 @@ const MovieDetails = ({ match }) => {
         ) : (
           <div>
             <div key={uuidv4()} className="showtime">
-              <span className="showtime-time">
-                Showtimes are not available for this movie
-              </span>
+              <span className="showtime-time">{t("noShowtimes")}</span>
               <div className="gif">
                 <iframe
                   title="gif"

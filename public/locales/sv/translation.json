@@ -1,5 +1,4 @@
 {
-  "title": "Hej",
   "titleMovieRow": {
     "nowInTheater": "För närvarande på bio",
     "commingSoon": "Kommande filmer",
@@ -9,5 +8,46 @@
     "news": "Nyheter från Moviestaden",
     "toplist": "Topplista"
   },
-  "buyTicket": "Boka biljetter"
+  "buyTicket": "Boka biljetter",
+  "footerTitles": {
+    "guests": "Gäster",
+    "members": "Medlemmar",
+    "about": "Om Moviestaden"
+  },
+  "ftGuests": {
+    "reservations": "Mina reservationer",
+    "customerService": "Kundservice",
+    "QA": "Frågor och svar",
+    "pricing": "Prissättning",
+    "largerGroups": "Boka större grupper"
+  },
+  "ftMembers": {
+    "signIn": "Logga in",
+    "signUp": "Bli medlem",
+    "aboutMembership": "Om medlemskapet"
+  },
+  "ftAbout": {
+    "Press": "Press",
+    "Job": "Jobb",
+    "socialMedia": "Sociala medier",
+    "leaveFeedback": "Lämna feedback"
+  },
+  "payTitle": "Betala med kontokort",
+  "namePerson": "Namn",
+  "email": "E-post",
+  "cardPerson": "Fyll i dina kortdetaljer",
+  "confirmOrder": "Betala",
+  "seatsSelected": "Utvalda platser: ",
+  "totalCost": "Totalpris: ",
+  "showtimes": "Visningstider",
+  "ticketsBuy": "Köp biljetter",
+  "proceedToPayment": "Fortsätt till betalning",
+  "noShowtimes": "Visningstider är inte tillgängliga för den här filmen nu!",
+  "from": "Från ",
+  "searchMovie": "Sök filmer",
+  "h": "tim",
+  "min": "min",
+  "selectSeats": "Platser",
+  "errorPayment": "Åtgärda fel för att slutföra betalningen",
+  "donePayment": "Tack! Betalningen lyckades. Vi skickar ett bekräftelsemeddelande med biljettinformation."
 }

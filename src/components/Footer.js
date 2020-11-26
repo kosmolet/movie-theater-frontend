@@ -1,60 +1,62 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "./Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <div className="footer">
       <section className="ft-main">
         <div className="ft-main-column">
-          <h2 className="ft-title">Guests</h2>
+          <h2 className="ft-title">{t("footerTitles.guests")}</h2>
           <ul>
             <li>
-              <a href="https://github.com/">Customer service</a>
+              <a href="https://github.com/">{t("ftGuests.reservations")}</a>
             </li>
             <li>
-              <a href="https://github.com/">Questions and answers</a>
+              <a href="https://github.com/">{t("ftGuests.customerService")}</a>
             </li>
             <li>
-              <a href="https://github.com/">Pricing</a>
+              <a href="https://github.com/">{t("ftGuests.QA")}</a>
             </li>
             <li>
-              <a href="https://github.com/">Book larger groups</a>
+              <a href="https://github.com/">{t("ftGuests.pricing")}</a>
             </li>
             <li>
-              <a href="https://github.com/">Leave feedback</a>
+              <a href="https://github.com/">{t("ftGuests.largerGroups")}</a>
             </li>
           </ul>
         </div>
         <div className="ft-main-column">
-          <h2 className="ft-title">Members</h2>
+          <h2 className="ft-title">{t("footerTitles.members")}</h2>
           <ul>
             <li>
-              <a href="https://github.com/">Sign in</a>
+              <a href="https://github.com/">{t("ftMembers.signIn")}</a>
             </li>
             <li>
-              <a href="https://github.com/">Sign up</a>
+              <a href="https://github.com/">{t("ftMembers.signUp")}</a>
             </li>
             <li>
-              <a href="https://github.com/">About the membership</a>
-            </li>
-            <li>
-              <a href="https://github.com/">Member news</a>
+              <a href="https://github.com/">{t("ftMembers.aboutMembership")}</a>
             </li>
           </ul>
         </div>
         <div className="ft-main-column">
-          <h2 className="ft-title">About Moviestaden</h2>
+          <h2 className="ft-title">{t("footerTitles.about")}</h2>
           <ul>
             <li>
-              <a href="https://github.com/">Press</a>
+              <a href="https://github.com/">{t("ftAbout.Press")}</a>
             </li>
             <li>
-              <a href="https://github.com/">Job</a>
+              <a href="https://github.com/">{t("ftAbout.Job")}</a>
             </li>
             <li>
-              <a href="https://github.com/">Social Media</a>
+              <a href="https://github.com/">{t("ftAbout.socialMedia")}</a>
+            </li>
+            <li>
+              <a href="https://github.com/">{t("ftAbout.leaveFeedback")}</a>
             </li>
           </ul>
         </div>

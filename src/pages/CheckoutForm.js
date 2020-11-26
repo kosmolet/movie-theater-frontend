@@ -5,6 +5,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-lonely-if */
 import React, { useState, useContext, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import emailjs from "emailjs-com";
 import CardSection from "./CardSection";
@@ -26,6 +27,7 @@ export default function CheckoutForm() {
   const [disabled, setDisabled] = useState(true);
   const [name, setName] = useState("noname");
   const [email, setEmail] = useState("no@email.com");
+  const { t } = useTranslation();
   const {
     state,
     chosenMovie,
@@ -104,13 +106,11 @@ export default function CheckoutForm() {
     });
 
     if (result.error) {
-      console.log(result.error.message);
       setError(` ${result.error.message}`);
       setProcessing(false);
       setSucceeded(false);
     } else {
       if (result.paymentIntent.status === "succeeded") {
-        console.log("Money is in the bank!");
         console.log(result);
         console.log("state PaymentSuccess", state);
         setError(null);
@@ -160,13 +160,13 @@ export default function CheckoutForm() {
           <h3>{chosenMovie.title}</h3>
 
           <span className="seats-info">
-            {`Selected seats: 
+            {`${t("seatsSelected")} 
           ${chosenSeats.toString()}`}
           </span>
           <br />
           <span className="price-info">
-            {`Total Price: 
-          ${chosenSeats.length * 20}SEK`}
+            {`${t("totalCost")} 
+          ${chosenSeats.length * 20} SEK`}
           </span>
         </div>
       </div>
@@ -174,7 +174,7 @@ export default function CheckoutForm() {
         {console.log("StoreCheckoutBefore", state)}
         <form onSubmit={handleSubmit} className="pay-form">
           <label className="pay-labels">
-            Name
+            {t("namePerson")}
             <input
               className="pay-inputs"
               name="name"
@@ -185,7 +185,7 @@ export default function CheckoutForm() {
             />
           </label>
           <label className="pay-labels">
-            Email
+            {t("email")}
             <input
               className="pay-inputs"
               name="email"
@@ -195,7 +195,7 @@ export default function CheckoutForm() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <label className="pay-labels-email">Card Credentials</label>
+          <label className="pay-labels-email">{t("cardPerson")}</label>
           <CardSection />
           <p
             className={
@@ -203,13 +203,13 @@ export default function CheckoutForm() {
             }
           >
             {error}
-            Please fix it and try again
+            {t("errorPayment")}
           </p>
           <button className="payment-button" disabled={disabled}>
-            Confirm order
+            {t("confirmOrder")}
           </button>
           <p className={succeeded ? "result-message" : "result-message hidden"}>
-            Payment succeeded, email will be send to you soon!
+            {t("donePayment")}
           </p>
         </form>
       </div>

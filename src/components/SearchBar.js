@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "./SearchBar.css";
 
 const SearchBar = ({ onSearch }) => {
   const [searchText, setSearchText] = useState("");
+  const { t } = useTranslation();
 
   const handleInput = (e) => {
     const text = e.target.value;
@@ -20,7 +22,7 @@ const SearchBar = ({ onSearch }) => {
           onChange={(e) => handleInput(e)}
           type="text"
           value={searchText}
-          placeholder="Search movies"
+          placeholder={t("searchMovie")}
         />
       </div>
     </div>
