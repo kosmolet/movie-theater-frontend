@@ -1,0 +1,6 @@
+.sr-root {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding-bottom: 500px;
+}

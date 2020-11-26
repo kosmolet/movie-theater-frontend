@@ -132,7 +132,8 @@ const SeatsSelection = () => {
             />
           ))}
         </span>
-        <Link to="/payment">
+        {/* <Link to="/payment"> */}
+        <Link to="/paymentsession">
           <button type="button" className="pay-button" disabled={disabled}>
             {t("proceedToPayment")}
           </button>

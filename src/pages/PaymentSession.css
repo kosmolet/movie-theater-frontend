@@ -1,0 +1,11 @@
+.pay-session-wrapper {
+  width: 60%;
+  color: red;
+  height: 500px;
+  padding: 500px;
+}
+
+.button-session {
+  color: white;
+  padding: 100px;
+}

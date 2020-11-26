@@ -14,6 +14,8 @@ import Ticket from "./components/Ticket";
 import Store from "./context/store";
 import Payment from "./pages/Payment";
 import CheckoutForm from "./pages/CheckoutForm";
+import PaymentSession from "./pages/PaymentSession";
+import Success from "./pages/Success";
 
 const { REACT_APP_STRIPE_SK_PUBLIC } = process.env;
 const stripePromise = loadStripe(REACT_APP_STRIPE_SK_PUBLIC);
@@ -30,10 +32,13 @@ function App() {
             <Route path="/booking" exact component={SeatsSelection} />
             <Route path="/checkout" exact component={BuyTicket} />
             <Route path="/ticket" exact component={Ticket} />
-            <Elements stripe={stripePromise}>
+            {/* <Elements stripe={stripePromise}>
               <Route path="/payment" exact component={CheckoutForm} />
-            </Elements>
+            </Elements> */}
             {/* <Route path="/payment" exact component={Payment} /> */}
+            {/* <Route path="/thankyou'" component={ThankYou} /> */}
+            <Route path="/paymentsession" component={PaymentSession} />
+            <Route path="/success" component={Success} />
             <Route component={NotFound} />
           </Switch>
         </div>
