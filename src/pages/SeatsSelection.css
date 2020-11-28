@@ -1,35 +1,77 @@
 .cinema-wrapper {
-  padding-top: 60px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 1vh;
+  left: 100px;
+  width: 80%;
+  max-width: 100%;
+  color: aliceblue;
+  text-shadow: black;
+}
+
+.title-hall,
+.title-seats,
+.time-seats,
+.selected-seats-title,
+.pay-button {
+  font-size: 20px;
+}
+
+.cinema-seats-movie {
+  position: absolute;
+  left: 5vw;
+  top: 10vh;
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+.img-seats {
+  border-radius: 4px;
+}
+
+.title-seats {
+  margin: 2px;
+}
+
+.time-seats {
+  margin: 5px;
+  color: #b91372;
+}
+
+.cinema-seats-hall {
+  position: absolute;
+  left: 35vw;
+  top: 7vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100%;
 }
 
 .screen {
   background-color: #fff;
   height: 15vh;
-  width: 34%;
-  margin: auto;
+  width: 90%;
   transform: rotateX(-45deg);
-  align-items: center;
   box-shadow: 0px 13px 15px 16px rgba(255, 255, 255, 0.92);
 }
 
+.title-hall {
+  color: #b91372;
+}
+
 .cinema-hall-wrapper {
-  margin: auto;
   width: 260px;
-  height: 35vh;
+  height: 260px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
   flex-flow: row wrap;
 }
 
-.title-hall {
-  font-size: 18px;
-  color: #b91372;
-  margin: 5px;
+.selected-seats-title {
+  margin: 0;
 }
 
 .seat-item {
@@ -46,7 +88,7 @@
   width: 20vw;
   border-radius: 3px;
   padding: 1rem 1rem;
-  margin-top: 50px;
+  margin-top: 30px;
   background-image: linear-gradient(75deg, #d387ab 0%, #b279a7 74%);
 }
 
@@ -63,42 +105,108 @@
   cursor: not-allowed;
 }
 
-.movie-on-seats {
-  position: absolute;
-  left: 2vw;
-  top: 25vh;
-  border-radius: 4px;
-  margin: 0;
+@media screen and (min-width: 2000px) {
+  .cinema-wrapper {
+    left: 10vw;
+  }
+  .title-hall,
+  .title-seats,
+  .time-seats,
+  .selected-seats-title,
+  .pay-button {
+    font-size: 2vh;
+  }
+  .selected-seats-title {
+    margin-bottom: 20px;
+  }
 }
-.img-seats {
-  border-radius: 4px;
-}
-.title-seats {
-  font-size: 20px;
-  margin: 2px;
+@media screen and (max-width: 1400px) {
+  .cinema-wrapper {
+    left: 5vw;
+    top: 5vh;
+  }
+  .cinema-seats-movie {
+    left: 0;
+    top: 7vh;
+  }
+  .cinema-seats-hall {
+    left: 25vw;
+    width: 50vw;
+  }
+  .pay-button {
+    width: 20vw;
+    margin-top: 15px;
+  }
+  .screen {
+    width: 50%;
+    height: 10vh;
+  }
+  .title-hall {
+    margin-bottom: 15px;
+  }
 }
 
-.time-seats {
-  margin: 5px;
-  font-size: 20px;
-  color: #b91372;
+@media screen and (max-width: 900px) {
+  .cinema-wrapper {
+    left: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cinema-seats-movie {
+    left: 0;
+    top: 70vh;
+  }
+  .cinema-seats-hall {
+    left: 7vw;
+    width: 90vw;
+  }
+  .pay-button {
+    width: 80vw;
+    margin-top: 5px;
+  }
+  .screen {
+    width: 80%;
+    height: 7vh;
+  }
+  .title-hall {
+    margin-bottom: 2px;
+  }
+  .img-seats {
+    margin-left: 15vw;
+  }
 }
 
 @media screen and (max-width: 600px) {
+  .cinema-wrapper {
+    left: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cinema-seats-movie {
+    left: 0;
+    top: 100vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cinema-seats-hall {
+    left: 7vw;
+    width: 90vw;
+  }
   .pay-button {
-    width: 70vw;
-    margin-top: 20px;
+    width: 80vw;
+    margin-top: 5px;
   }
-  .cinema-hall-wrapper {
-    padding-top: 20px;
+  .screen {
+    width: 80%;
+    height: 7vh;
   }
-  .movie-on-seats {
-    display: none;
-  }
-}
-@media screen and (min-width: 2000px) {
-  .img-seats {
-    left: 20vw;
-    top: 25vh;
+  .title-hall {
+    margin-bottom: 2px;
   }
 }

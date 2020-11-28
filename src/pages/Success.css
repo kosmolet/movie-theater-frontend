@@ -3,4 +3,23 @@
   flex-direction: column;
   color: white;
   padding-bottom: 500px;
+  padding-top: 100px;
+  overflow: hidden;
+}
+
+.linkEmail {
+  padding-bottom: 1px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  box-shadow: inset 0 -4px 0 plum;
+  transition: background-color 0.25s ease-out;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.linkEmail:hover {
+  background-color: plum;
+  padding-top: 2px;
+  box-shadow: none;
+  color: black;
 }

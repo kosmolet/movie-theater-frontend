@@ -43,3 +43,10 @@
   font-weight: 600;
   font-size: 1.1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .switch-lang-div {
+    right: 30vw;
+    top: 3.3vh;
+  }
+}

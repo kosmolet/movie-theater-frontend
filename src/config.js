@@ -24,7 +24,7 @@ const FROM_DATE = getCurrentDate(-14);
 const TO_DATE = getCurrentDate(7);
 
 const FROM_DATE_UPCOMING = getCurrentDate(40);
-const TO_DATE_UPCOMING = getCurrentDate(365);
+const TO_DATE_UPCOMING = getCurrentDate(80);
 
 const fetchMoviesRequests = {
   InTheaters: `${TMDB_API_URL}discover/movie?api_key=${REACT_APP_TMDB_API_KEY}&primary_release_date.gte=${FROM_DATE}&primary_release_date.lte=${TO_DATE}`,

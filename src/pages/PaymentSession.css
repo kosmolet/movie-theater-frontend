@@ -1,11 +1,120 @@
-.pay-session-wrapper {
-  width: 60%;
-  color: red;
-  height: 500px;
-  padding: 500px;
+.payment-info-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 5vh;
+  left: 4vw;
+  width: 80%;
+  max-width: 100%;
+  color: aliceblue;
+  text-shadow: black;
 }
 
-.button-session {
+.payment-info-img {
+  position: absolute;
+  top: 10vh;
+  left: 1vw;
+}
+
+.payment-info-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  left: 30vw;
+  top: 6vh;
+}
+.payment-info-inputs p {
+  margin-bottom: 3px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.pay-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.pay-labels {
+  color: #b91372;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.pay-inputs {
+  margin: 2vh 0;
+  width: 30vw;
+  height: 6vh;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  border: 1px solid transparent;
+  box-shadow: 0 10px 25px rgba(253, 180, 216, 0.3);
+  background-color: rgb(5, 10, 10);
+  color: #9595bb;
+}
+
+.pay-button {
+  margin-top: 5vh;
+  width: 30vw;
+  font-size: 1.3rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 1rem 1rem;
+  justify-content: space-between;
+  background-image: linear-gradient(75deg, #d387ab 0%, #b279a7 74%);
+}
+.pay-button:hover {
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  transition: all 0.2s;
   color: white;
-  padding: 100px;
+}
+.pay-button:disabled {
+  background-image: linear-gradient(75deg, #a7788d 0%, #a07d99 74%);
+  transition: all 0.2s;
+  color: rgb(99, 88, 88);
+  cursor: not-allowed;
+}
+
+@media screen and (min-width: 2000px) {
+  .payment-info-img {
+    left: 12vw;
+    top: 8vh;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .payment-info-img {
+    left: 0;
+    top: 8vh;
+  }
+  .payment-info-inputs {
+    max-width: 100%;
+    left: 44vw;
+  }
+  .pay-inputs,
+  .pay-button {
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .payment-info-img {
+    display: none;
+  }
+  .payment-info-inputs {
+    max-width: 100%;
+    left: 2vw;
+  }
+  .pay-inputs,
+  .pay-button {
+    width: 85vw;
+  }
 }
