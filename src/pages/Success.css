@@ -1,10 +1,22 @@
-.sr-root {
-  display: flex;
-  flex-direction: column;
+.content-wrapper-success {
   color: white;
-  padding-bottom: 500px;
-  padding-top: 100px;
-  overflow: hidden;
+  background-color: #2d3436;
+  background-image: linear-gradient(360deg, #2d3436 0%, #000000 34%);
+  width: auto;
+  margin: 0;
+  padding-bottom: 1500px;
+  height: 100%;
+}
+.reservation-message {
+  position: absolute;
+  left: 50vw;
+  top: 25vh;
+  max-width: 90%;
+}
+
+.centered {
+  transform: translateX(-50%) translateY(-50%) rotateX(15deg);
+  text-align: center;
 }
 
 .linkEmail {
@@ -22,4 +34,25 @@
   padding-top: 2px;
   box-shadow: none;
   color: black;
+}
+
+.ticket-section-success {
+  position: absolute;
+  left: 30vw;
+  top: 45vh;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .ticket-section-success {
+    left: 0;
+  }
+  .reservation-message {
+    left: 30vw;
+    font-size: 7px;
+    top: 35vh;
+  }
+  .linkEmail {
+    font-size: 15px;
+  }
 }

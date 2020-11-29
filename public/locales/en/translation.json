@@ -49,5 +49,10 @@
   "min": "min",
   "selectSeats": "Seats",
   "errorPayment": "Please fix errors to finish the payment",
-  "donePayment": "Thank you! Payment succeeded. We’ll send you a confirmation email with ticket details."
+  "donePayment": "Thank you! Payment succeeded. We’ll send you a confirmation email with ticket details.",
+  "unpaidReservation": "This reservation is unpaid",
+  "thanksForOrder": "Thanks for your order! Your reservation ID is ",
+  "emailUs": "Email with order details will be send to you soon! If you have any questions, please email us ",
+  "paymentCancelled": "Your payment was canceled. Please try to book tickets again or buy them in Moviestaden cinema house",
+  "emailUsCancell": "If you have any questions, please email us"
 }

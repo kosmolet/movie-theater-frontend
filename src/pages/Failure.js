@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import fetchBaseURL from "../axios";
 import "./Success.css";
 
@@ -10,7 +11,7 @@ const Failure = () => {
     showtimeId: "",
     reservationId: "",
   });
-
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const sessionId = location.search.replace("?session_id=", "");
 
@@ -37,6 +38,9 @@ const Failure = () => {
         showtimeId: sessionData.metadata.showtimeId,
         reservationId: sessionData.metadata.reservationId,
       });
+      if (sessionData.locale) {
+        i18n.changeLanguage(sessionData.locale);
+      }
     };
     fetchSession();
   }, [sessionId]);
@@ -49,16 +53,13 @@ const Failure = () => {
   }, [order]);
 
   return (
-    <div className="sr-root">
+    <div className="content-wrapper-success">
       {console.log(session, "session")}
-      <div className="sr-main">
-        <div className="sr-payment-summary completed-view">
-          <h1>
-            Your payment was canceled. Please try to book tickets again or buy
-            them in Moviestaden cinema house
-          </h1>
+      <div className="reservation-message">
+        <div className="centered">
+          <h1>{t("paymentCancelled")}</h1>
           <p>
-            If you have any questions, please email us
+            {t("emailUsCancell")}
             <a
               className="linkEmail"
               href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=moviestaden@gmail.com"
@@ -69,12 +70,6 @@ const Failure = () => {
               moviestaden@gmail.com
             </a>
           </p>
-        </div>
-        <div className="sr-section completed-view">
-          <div className="sr-callout">
-            <h4>View CheckoutSession response:</h4>
-            <pre>{JSON.stringify(session, null, 2)}</pre>
-          </div>
         </div>
       </div>
     </div>

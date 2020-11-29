@@ -10,42 +10,16 @@ import "./PaymentSession.css";
 const { REACT_APP_STRIPE_SK_PUBLIC } = process.env;
 const stripePromise = loadStripe(REACT_APP_STRIPE_SK_PUBLIC);
 
-const Message = ({ message }) => (
-  <section>
-    <p>{message}</p>
-  </section>
-);
 const PaymentSession = () => {
-  const [message, setMessage] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  // const [reservationId, setReservationId] = useState("3244");
   const { t, i18n } = useTranslation();
 
-  const {
-    state,
-    chosenMovie,
-    chosenShowtime,
-    chosenSeats,
-    clearSelectedSeats,
-    addReservation,
-  } = useContext(AppContext);
+  const { state, chosenMovie, chosenShowtime, chosenSeats } = useContext(
+    AppContext
+  );
 
-  // useEffect(() => {
-  //   // Check to see if this is a redirect back from Checkout
-  //   const query = new URLSearchParams(window.location.search);
-  //   if (query.get("success")) {
-  //     console.log("successed");
-  //     setMessage("Order placed! You will receive an email confirmation.");
-  //   }
-  //   if (query.get("canceled")) {
-  //     console.log("cancelled");
-  //     setMessage(
-  //       "Order canceled -- continue to shop around and checkout when you're ready."
-  //     );
-  //   }
-  // }, []);
   useEffect(() => {
     if (name.length < 2 || email.length < 5) {
       setDisabled(true);
@@ -89,7 +63,6 @@ const PaymentSession = () => {
     });
 
     const session = await response.data;
-    console.log(session, "response session");
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });

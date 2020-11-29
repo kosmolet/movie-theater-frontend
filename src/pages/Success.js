@@ -1,14 +1,22 @@
-/* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import emailjs from "emailjs-com";
 import fetchBaseURL from "../axios";
 import "./Success.css";
+import Ticket from "../components/Ticket";
+
+const {
+  REACT_APP_EMAILJS_USERID,
+  REACT_APP_TEMPLATE_ID,
+  REACT_APP_SERVICE_ID,
+} = process.env;
 
 const Success = () => {
   const [session, setSession] = useState({});
   const [unpaid, setUnpaid] = useState(false);
   const [customerId, setCustomerId] = useState("");
+  const { t, i18n } = useTranslation();
   const [order, setOrder] = useState({
     movieId: "",
     showtimeId: "",
@@ -17,14 +25,67 @@ const Success = () => {
   const [customer, setCustomer] = useState({});
   const location = useLocation();
   const sessionId = location.search.replace("?session_id=", "");
+  const [orderDetails, setOrderDetails] = useState({
+    to_email: "",
+    to_name: "",
+    movie: "",
+    date: "",
+    time: "",
+    seats: "",
+    hall: "",
+  });
+
+  const getReservationInfoAndSendMAil = async () => {
+    try {
+      const res = await fetchBaseURL.get(
+        `movies/${order.movieId}/showtimes/${order.showtimeId}/reservations/${order.reservationId}`
+      );
+      const reservation = await res.data[0];
+      const shtime = await fetchBaseURL.get(
+        `movies/${order.movieId}/showtimes/${order.showtimeId}/reservations`
+      );
+      const showtime = await shtime.data[0];
+      const movieRes = await fetchBaseURL.get(`movies/${order.movieId}`);
+      const movie = await movieRes.data;
+
+      const templateParams = {
+        to_email: reservation.email,
+        to_name: reservation.username,
+        movie: movie.title,
+        date: showtime.startAt.slice(0, 10),
+        time: showtime.startAt.slice(11, 16),
+        seats: reservation.seats.toString(),
+        hall: showtime.hallName,
+      };
+      setOrderDetails(templateParams);
+      if (reservation.isEmailSend === false) {
+        const resEmail = await emailjs.send(
+          REACT_APP_SERVICE_ID,
+          REACT_APP_TEMPLATE_ID,
+          templateParams,
+          REACT_APP_EMAILJS_USERID
+        );
+        if (resEmail.status === 200) {
+          await fetchBaseURL.patch(
+            `movies/${order.movieId}/showtimes/${order.showtimeId}/reservations/${order.reservationId}`,
+            {
+              isEmailSend: true,
+            }
+          );
+        }
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e.message, "error on attempt to get reservation");
+    }
+  };
 
   const patchReservation = async () => {
     try {
       const paymentDate = new Date(
         session.line_items.data[0].price.created * 1000
       );
-      console.log(paymentDate);
-      const res = await fetchBaseURL.patch(
+      await fetchBaseURL.patch(
         `movies/${order.movieId}/showtimes/${order.showtimeId}/reservations/${order.reservationId}`,
         {
           isPaymentSucceed: true,
@@ -36,6 +97,7 @@ const Success = () => {
         }
       );
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e.message, "Reservation has not been updated");
     }
   };
@@ -57,6 +119,9 @@ const Success = () => {
           reservationId: sessionData.metadata.reservationId,
         });
       }
+      if (sessionData.locale) {
+        i18n.changeLanguage(sessionData.locale);
+      }
       setCustomerId(sessionData.customer);
     };
     fetchSession();
@@ -73,57 +138,27 @@ const Success = () => {
     fetchSession();
   }, [customerId]);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (session.payment_status === "paid") {
       patchReservation();
       setUnpaid(false);
+      getReservationInfoAndSendMAil();
     } else {
       setUnpaid(true);
     }
   }, [order]);
-  /*
-  const templateParams = {
-    to_email: email,
-    to_name: name,
-    movie: chosenMovie.title,
-    date: chosenShowtime.startAt.slice(0, 10),
-    time: chosenShowtime.startAt.slice(11, 16),
-    seats: chosenSeats.toString(),
-    hall: chosenShowtime.hallName,
-  };
-
-  const sendEmail = () => {
-    emailjs
-      .send(
-        REACT_APP_SERVICE_ID,
-        REACT_APP_TEMPLATE_ID,
-        templateParams,
-        REACT_APP_EMAILJS_USERID
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (err) => {
-          console.log(err.text);
-        }
-      );
-  };
-*/
 
   return unpaid ? (
-    <div className="sr-root">this reservation is unpaid</div>
+    <div className="sr-root">{t("unpaidReservation")}</div>
   ) : (
-    <div className="sr-root">
+    <div className="content-wrapper-success">
       {console.log(session, "session")}
-      <div className="sr-main">
-        <div className="sr-payment-summary completed-view">
-          <h1>
-            {`Thanks for your order! Your reservation ID is ${order.reservationId}`}
-          </h1>
+
+      <div className="reservation-message">
+        <div className="centered">
+          <h1>{` ${t("thanksForOrder")} ${order.reservationId}`}</h1>
           <p>
-            Email with order details will be send to you soon! If you have any
-            questions, please email us
+            {t("emailUs")}
             <a
               className="linkEmail"
               href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=moviestaden@gmail.com"
@@ -135,14 +170,9 @@ const Success = () => {
             </a>
           </p>
         </div>
-        <div className="sr-section completed-view">
-          <div className="sr-callout">
-            <h4>View CheckoutSession response:</h4>
-            <pre>{JSON.stringify(session, null, 2)}</pre>
-            <h4>View Customer response:</h4>
-            <pre>{JSON.stringify(customer, null, 2)}</pre>
-          </div>
-        </div>
+      </div>
+      <div className="ticket-section-success">
+        <Ticket orderDetails={orderDetails} />
       </div>
     </div>
   );

@@ -49,5 +49,10 @@
   "min": "min",
   "selectSeats": "Platser",
   "errorPayment": "Åtgärda fel för att slutföra betalningen",
-  "donePayment": "Tack! Betalningen lyckades. Vi skickar ett bekräftelsemeddelande med biljettinformation."
+  "donePayment": "Tack! Betalningen lyckades. Vi skickar ett bekräftelsemeddelande med biljettinformation.",
+  "unpaidReservation": "Denna reservation är obetald",
+  "thanksForOrder": "Tack för din beställning! Ditt boknings-ID är ",
+  "emailUs": "E-post med beställningsinformation skickas till dig snart! Skicka ett e-postmeddelande till oss om du har några frågor",
+  "paymentCancelled": "Din betalning har annullerats. Du kan boka om dina biljetter eller köpa dem på filmkontoret Moviestaden",
+  "emailUsCancell": "Du kan klargöra information genom att skicka frågor till"
 }
