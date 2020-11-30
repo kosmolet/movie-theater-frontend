@@ -23,6 +23,7 @@ const Banner = ({ movies }) => {
 
   return (
     <header
+      data-testid="banner"
       className="banner"
       style={{
         backgroundSize: "cover",

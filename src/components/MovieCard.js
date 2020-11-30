@@ -5,7 +5,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from "../config";
 
 const MovieCard = ({ movie }) => {
   return (
-    <div className="movie-card-wrapper">
+    <div className="movie-card-wrapper" data-testid="movie-card">
       {movie.poster_path ? (
         <Link to={`/movie/${movie?.id || movie?._id}`}>
           <figure className="movie-card">

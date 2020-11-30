@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { loadStripe } from "@stripe/stripe-js";
@@ -68,6 +67,7 @@ const PaymentSession = () => {
     });
 
     if (result.error) {
+      // eslint-disable-next-line no-console
       console.log(result.error);
     }
   };
@@ -94,56 +94,62 @@ const PaymentSession = () => {
             alt={`${chosenMovie?.title}movie`}
           />
         </div>
-        <div className="payment-info-inputs">
-          <p>{chosenMovie?.title}</p>
-          <p>{chosenShowtime?.hallName}</p>
-          <p>{chosenShowtime?.startAt.slice(0, 10)}</p>
-          <p>{chosenShowtime?.startAt.slice(11, 16)}</p>
+        {chosenShowtime && chosenShowtime.startAt ? (
+          <div className="payment-info-inputs">
+            <p>{chosenMovie?.title}</p>
+            <p>{chosenShowtime?.hallName}</p>
+            <p>{chosenShowtime?.startAt.slice(0, 10)}</p>
+            <p>{chosenShowtime?.startAt.slice(11, 16)}</p>
 
-          <p className="seats-info">
-            {`${t("seatsSelected")} 
+            <p className="seats-info">
+              {`${t("seatsSelected")} 
             ${chosenSeats.toString()}`}
-          </p>
-          <p className="price-info">
-            {`${t("totalCost")} 
+            </p>
+            <p className="price-info">
+              {`${t("totalCost")} 
              ${chosenSeats.length * ticketPrice} kr`}
-          </p>
+            </p>
 
-          <form className="pay-form">
-            <label className="pay-labels">
-              {t("namePerson")}
-              <input
-                className="pay-inputs"
-                name="name"
-                type="text"
-                placeholder="name"
-                required
-                onChange={(e) => setName(e.target.value)}
-              />
-            </label>
-            <label className="pay-labels">
-              {t("email")}
-              <input
-                className="pay-inputs"
-                name="email"
-                type="email"
-                placeholder="your.mail@example.com"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </label>
-            <button
-              className="pay-button"
-              id="checkout-button"
-              type="button"
-              role="link"
-              onClick={handleClick}
-              disabled={disabled}
-            >
-              {t("confirmOrder")}
-            </button>
-          </form>
-        </div>
+            <form className="pay-form">
+              <label className="pay-labels" htmlFor="name">
+                {t("namePerson")}
+                <input
+                  id="name"
+                  className="pay-inputs"
+                  name="name"
+                  type="text"
+                  placeholder="name"
+                  required
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+              <label className="pay-labels" htmlFor="email">
+                {t("email")}
+                <input
+                  id="email"
+                  className="pay-inputs"
+                  name="email"
+                  type="email"
+                  placeholder="your.mail@example.com"
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
+              <button
+                className="pay-button"
+                id="checkout-button"
+                type="button"
+                role="link"
+                onClick={handleClick}
+                disabled={disabled}
+              >
+                {t("confirmOrder")}
+              </button>
+            </form>
+          </div>
+        ) : (
+          <h1> Please select a movie and showtime </h1>
+        )}
       </div>
     </div>
   );

@@ -80,6 +80,19 @@
   cursor: pointer;
 }
 
+.selected-seats-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 90%;
+}
+
+.seat {
+  font-size: 20px;
+  margin: 0;
+  color: black;
+}
+
 .pay-button {
   cursor: pointer;
   outline: none;

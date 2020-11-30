@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import fetchBaseURL from "../axios";
 import "./Success.css";
@@ -17,10 +17,9 @@ const Failure = () => {
 
   const deleteCancelledReservation = async () => {
     try {
-      const res = await fetchBaseURL.delete(
+      await fetchBaseURL.delete(
         `movies/${order.movieId}/showtimes/${order.showtimeId}/reservations/${order.reservationId}`
       );
-      console.log(res);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e.message, "Reservation has been already removed");
@@ -47,7 +46,6 @@ const Failure = () => {
 
   useEffect(() => {
     if (session.payment_status === "unpaid") {
-      console.log(session.payment_status);
       deleteCancelledReservation();
     }
   }, [order]);

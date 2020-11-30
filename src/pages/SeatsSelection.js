@@ -132,7 +132,7 @@ const SeatsSelection = () => {
           <h6 className="title-hall">{chosenShowtime?.hallName}</h6>
           <div className="cinema-hall-wrapper">{renderCinemaHall()}</div>
           <h3 className="selected-seats-title">{t("seatsSelected")}</h3>
-          <span>
+          <span className="selected-seats-row">
             {selectedSeats.map((i) => (
               <SeatBox
                 key={uuidv4()}

@@ -21,7 +21,6 @@ const MovieDetails = ({ match }) => {
   const { t } = useTranslation();
   const {
     state,
-    chosenDay,
     availableShowtime,
     chosenMovie,
     setChosenMovie,

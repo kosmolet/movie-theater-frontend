@@ -4,7 +4,6 @@ import "./Ticket.css";
 const Ticket = ({ orderDetails }) => {
   return (
     <div className="ticket-wrapper">
-      {console.log(orderDetails, "orderdetails")}
       <div className="ticket cardLeft">
         <h1>Moviestaden Cinema</h1>
         <div className="title">

@@ -15,14 +15,13 @@ const {
 const Success = () => {
   const [session, setSession] = useState({});
   const [unpaid, setUnpaid] = useState(false);
-  const [customerId, setCustomerId] = useState("");
   const { t, i18n } = useTranslation();
   const [order, setOrder] = useState({
     movieId: "",
     showtimeId: "",
     reservationId: "",
   });
-  const [customer, setCustomer] = useState({});
+
   const location = useLocation();
   const sessionId = location.search.replace("?session_id=", "");
   const [orderDetails, setOrderDetails] = useState({
@@ -122,21 +121,9 @@ const Success = () => {
       if (sessionData.locale) {
         i18n.changeLanguage(sessionData.locale);
       }
-      setCustomerId(sessionData.customer);
     };
     fetchSession();
   }, [sessionId]);
-
-  useEffect(() => {
-    const fetchSession = async () => {
-      const res = await fetchBaseURL.get(
-        `checkout-session/customers/${customerId}`
-      );
-      const customerData = await res.data;
-      setCustomer(customerData);
-    };
-    fetchSession();
-  }, [customerId]);
 
   useEffect(async () => {
     if (session.payment_status === "paid") {
