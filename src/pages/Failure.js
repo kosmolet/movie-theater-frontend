@@ -52,7 +52,6 @@ const Failure = () => {
 
   return (
     <div className="content-wrapper-success">
-      {console.log(session, "session")}
       <div className="reservation-message">
         <div className="centered">
           <h1>{t("paymentCancelled")}</h1>

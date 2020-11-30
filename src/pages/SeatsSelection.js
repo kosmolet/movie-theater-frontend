@@ -15,6 +15,7 @@ const SeatsSelection = () => {
     AppContext
   );
   const [selectedSeats, changeSelectedSeats] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [seatsLimit, setLimit] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [tacken, setTacken] = useState([]);
@@ -114,7 +115,6 @@ const SeatsSelection = () => {
         }}
       />
       <div className="banner-shadow"> </div>
-      {console.log(chosenShowtime)}
       <div className="cinema-wrapper">
         <div className="cinema-seats-movie">
           <img

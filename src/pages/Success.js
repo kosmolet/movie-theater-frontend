@@ -139,8 +139,6 @@ const Success = () => {
     <div className="sr-root">{t("unpaidReservation")}</div>
   ) : (
     <div className="content-wrapper-success">
-      {console.log(session, "session")}
-
       <div className="reservation-message">
         <div className="centered">
           <h1>{` ${t("thanksForOrder")} ${order.reservationId}`}</h1>

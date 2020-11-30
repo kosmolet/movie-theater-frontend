@@ -15,9 +15,7 @@ const PaymentSession = () => {
   const [email, setEmail] = useState("");
   const { t, i18n } = useTranslation();
 
-  const { state, chosenMovie, chosenShowtime, chosenSeats } = useContext(
-    AppContext
-  );
+  const { chosenMovie, chosenShowtime, chosenSeats } = useContext(AppContext);
 
   useEffect(() => {
     if (name.length < 2 || email.length < 5) {
@@ -85,7 +83,6 @@ const PaymentSession = () => {
         }}
       />
       <div className="banner-shadow"> </div>
-      {console.log(state)}
       <div className="payment-info-wrapper">
         <div className="payment-info-img">
           <img

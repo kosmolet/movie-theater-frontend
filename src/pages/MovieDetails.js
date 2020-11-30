@@ -20,7 +20,6 @@ const MovieDetails = ({ match }) => {
   const [ddResShowtimes, setddResShowtimes] = useState([]);
   const { t } = useTranslation();
   const {
-    state,
     availableShowtime,
     chosenMovie,
     setChosenMovie,
@@ -140,7 +139,6 @@ const MovieDetails = ({ match }) => {
 
   return (
     <div className="content-wrapper">
-      {console.log("STORE MovDetails", state)}
       <header
         className="banner"
         style={{
