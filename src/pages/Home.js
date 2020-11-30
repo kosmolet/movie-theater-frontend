@@ -9,7 +9,7 @@ import AppContext from "../context/context";
 import useFetchMovies from "../hooks/useFetchMovies";
 import "./Home.css";
 
-const Movies = () => {
+const Home = () => {
   const [moviesFound, setFoundMovies] = useState([]);
   const { t } = useTranslation();
   const [
@@ -42,7 +42,7 @@ const Movies = () => {
   }, [allMoviesFromDb]);
 
   return (
-    <div className="home-wrapper">
+    <div className="home-wrapper" data-testid="home-page">
       <Banner movies={allMoviesFromDb} />
       <SearchBar onSearch={onSearch} />
       {moviesFound.length > 0 ? (
@@ -81,4 +81,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Home;

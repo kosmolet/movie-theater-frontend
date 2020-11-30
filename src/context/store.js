@@ -11,7 +11,6 @@ import {
   SET_CHOSEN_SHOWTIME,
   ADD_SEAT,
   DELETE_SEAT,
-  SET_TICKET_TYPE,
   CLEAR_CHOSEN_SEATS,
   SET_USER,
   SET_RESERVATION,
@@ -75,14 +74,6 @@ const Store = (props) => {
       payload: seats,
     });
   };
-  // update it
-  const selectTicketType = (seat, ticketType) => {
-    dispatch({
-      type: SET_TICKET_TYPE,
-      payload: seat,
-      ticketType,
-    });
-  };
 
   const clearSelectedSeats = () => {
     dispatch({
@@ -124,7 +115,6 @@ const Store = (props) => {
         addSeat,
         deleteSeat,
         setChosenSeats,
-        selectTicketType,
         clearSelectedSeats,
         setUser,
         addReservation,

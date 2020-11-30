@@ -1,5 +1,3 @@
-import ticketPrices from "../config/TicketPrices";
-
 import {
   SET_DAY,
   SET_MOVIES,
@@ -9,7 +7,6 @@ import {
   ADD_SEAT,
   DELETE_SEAT,
   SET_CHOSEN_SEATS,
-  SET_TICKET_TYPE,
   CLEAR_CHOSEN_SEATS,
   SET_USER,
   SET_RESERVATION,
@@ -46,21 +43,6 @@ const reducer = (state, action) => {
       };
     case SET_CHOSEN_SEATS:
       return { ...state, chosenSeats: action.payload };
-    case SET_TICKET_TYPE:
-      // eslint-disable-next-line no-case-declarations
-      const newSeat = {
-        ...state.chosenSeats[getSeatIndex()],
-        ticketType: action.payload.ticketType,
-        price: ticketPrices.get(action.payload.ticketType),
-      };
-      return {
-        ...state,
-        chosenSeats: [
-          ...state.chosenSeats.slice(0, getSeatIndex()),
-          newSeat,
-          ...state.chosenSeats.slice(getSeatIndex() + 1),
-        ],
-      };
 
     case CLEAR_CHOSEN_SEATS:
       return { ...state, chosenSeats: [] };
