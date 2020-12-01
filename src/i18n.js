@@ -4,7 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
 const fallbackLng = ["en"];
-const availableLanguages = ["en", "sv", "be", "ru"];
+const availableLanguages = ["sv", "en", "be", "ru"];
 
 const options = {
   order: ["navigator", "htmlTag", "path", "subdomain"],
@@ -34,6 +34,7 @@ i18n
   .use(initReactI18next)
 
   .init({
+    lng: "sv",
     fallbackLng,
     debug: true,
     whitelist: availableLanguages,
