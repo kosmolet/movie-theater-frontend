@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import AppContext from "../context/context";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18nForTests";
+import Store from "../context/store";
 
 export const getTestStore = () => {
   return {
@@ -103,10 +105,11 @@ export const getTestStore = () => {
 };
 
 export const WithProvider = (props) => {
-  const { state, dispatch } = getTestStore();
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      <Router>{props.children}</Router>
-    </AppContext.Provider>
+    <Store>
+      <I18nextProvider i18n={i18n}>
+        <Router>{props.children}</Router>
+      </I18nextProvider>
+    </Store>
   );
 };

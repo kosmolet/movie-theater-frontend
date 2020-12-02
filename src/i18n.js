@@ -7,7 +7,16 @@ const fallbackLng = ["en"];
 const availableLanguages = ["sv", "en", "be", "ru"];
 
 const options = {
-  order: ["navigator", "htmlTag", "path", "subdomain"],
+  order: [
+    "querystring",
+    "cookie",
+    "localStorage",
+    "sessionStorage",
+    "navigator",
+    "htmlTag",
+    "path",
+    "subdomain",
+  ],
 
   lookupQuerystring: "lng",
   lookupCookie: "i18next",
@@ -34,10 +43,9 @@ i18n
   .use(initReactI18next)
 
   .init({
-    lng: "sv",
     fallbackLng,
     debug: true,
-    whitelist: availableLanguages,
+    supportedLngs: availableLanguages,
     detection: options,
 
     interpolation: {

@@ -51,7 +51,7 @@ const Failure = () => {
   }, [order]);
 
   return (
-    <div className="content-wrapper-success">
+    <div className="content-wrapper-success" data-testid="failure-page">
       <div className="reservation-message">
         <div className="centered">
           <h1>{t("paymentCancelled")}</h1>

@@ -70,7 +70,7 @@ const PaymentSession = () => {
     }
   };
   return (
-    <div className="content-wrapper">
+    <div className="content-wrapper" data-testid="payment-session">
       <header
         className="banner"
         style={{

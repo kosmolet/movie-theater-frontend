@@ -136,9 +136,11 @@ const Success = () => {
   }, [order]);
 
   return unpaid ? (
-    <div className="sr-root">{t("unpaidReservation")}</div>
+    <div data-testid="success-page" className="sr-root">
+      {t("unpaidReservation")}
+    </div>
   ) : (
-    <div className="content-wrapper-success">
+    <div className="content-wrapper-success" data-testid="success-page">
       <div className="reservation-message">
         <div className="centered">
           <h1>{` ${t("thanksForOrder")} ${order.reservationId}`}</h1>

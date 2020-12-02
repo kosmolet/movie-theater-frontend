@@ -102,7 +102,7 @@ const SeatsSelection = () => {
   }, [chosenShowtime]);
 
   return (
-    <div className="content-wrapper">
+    <div className="content-wrapper" data-testid="seatselection-page">
       <header
         className="banner"
         style={{
