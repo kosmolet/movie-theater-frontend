@@ -125,14 +125,17 @@ const Success = () => {
     fetchSession();
   }, [sessionId]);
 
-  useEffect(async () => {
-    if (session.payment_status === "paid") {
-      patchReservation();
-      setUnpaid(false);
-      getReservationInfoAndSendMAil();
-    } else {
-      setUnpaid(true);
-    }
+  useEffect(() => {
+    const processOrder = async () => {
+      if (session.payment_status === "paid") {
+        patchReservation();
+        setUnpaid(false);
+        getReservationInfoAndSendMAil();
+      } else {
+        setUnpaid(true);
+      }
+    };
+    processOrder();
   }, [order]);
 
   return unpaid ? (

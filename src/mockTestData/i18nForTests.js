@@ -5,7 +5,6 @@ i18n.use(initReactI18next).init({
   lng: "cimode",
   fallbackLng: "en",
 
-  // have a common namespace used around the full app
   ns: ["translations"],
   defaultNS: "translations",
 
