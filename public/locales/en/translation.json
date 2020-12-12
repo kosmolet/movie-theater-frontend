@@ -54,5 +54,7 @@
   "thanksForOrder": "Thanks for your order! Your reservation ID is ",
   "emailUs": "Email with order details will be send to you soon! If you have any questions, please email us ",
   "paymentCancelled": "Your payment was canceled. Please try to book tickets again or buy them in Moviestaden cinema house",
-  "emailUsCancell": "If you have any questions, please email us"
+  "emailUsCancell": "If you have any questions, please email us",
+  "invalidEmail": "Email should be in the format like 'email@gmail.com'",
+  "invalidName": "Name should contain at least 3 characters"
 }

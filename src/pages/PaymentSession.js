@@ -13,15 +13,25 @@ const PaymentSession = () => {
   const [disabled, setDisabled] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
   const { t, i18n } = useTranslation();
 
   const { chosenMovie, chosenShowtime, chosenSeats } = useContext(AppContext);
 
+  const validateEmail = () => {
+    const pattern = new RegExp(
+      /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+    );
+    return pattern.test(String(email).toLowerCase());
+  };
+
   useEffect(() => {
-    if (name.length < 2 || email.length < 5) {
-      setDisabled(true);
-    } else {
+    if (validateEmail(email) && name.length > 3) {
       setDisabled(false);
+      setError(false);
+    } else {
+      setDisabled(true);
+      if (email?.length > 0 && name.length > 0) setError(true);
     }
   }, [name, email]);
 
@@ -142,6 +152,13 @@ const PaymentSession = () => {
               >
                 {t("confirmOrder")}
               </button>
+              {error ? (
+                <span className="form-error">
+                  {t("invalidEmail")}
+                  <br />
+                  {t("invalidName")}
+                </span>
+              ) : null}
             </form>
           </div>
         ) : (
